@@ -11,16 +11,16 @@
 
 % numbers of characters that should fit on the line
 \int_new:N\l_resp_charlines_int
+\l_resp_charlines_int = 55
 \keys_define:nn {responsive} {
   characters .int_set:N = \l_resp_charlines_int,
-  characters .default:n = 55
 }
 
 % type of typograhic scale
 \tl_new:N\l_resp_scaletype_str
+\tl_set:Nn\l_resp_scaletype_str {pentatonic}
 \keys_define:nn {responsive} {
   scale .tl_set:N = \l_resp_scaletype_str,
-  scale .default:n = pentatonic
 }
 
 
@@ -95,6 +95,7 @@
 
 
 \newcommand\setsizes[1]{%
+  \typeout{a jsme aspoň tady? #1}
   \fonttobox[32]\textwidth{#1}%
   % \let\orig@normalsize\normalsize%
   % \fp_set:Nn\l_resp_scaler_fp{2}
