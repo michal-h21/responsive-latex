@@ -133,14 +133,65 @@
 %% media query tests %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-% max-width tests if the passed dimension is smaller than paperwidth
-\DeclareMediaQueryMatcher{max-width}{
-  \dim_compare:nT{\paperwidth>=#1}{\mediaquerytrue}
+%  tests if the passed dimension is smaller than paperwidth
+\DeclareMediaQueryMatcher{max-paperwidth}{
+  \dim_compare:nT{\paperwidth>#1}{\mediaquerytrue}
 }
 
-% min-width tests if the passed dimension is larger than paperwidth
-\DeclareMediaQueryMatcher{min-width}{
+%  tests if the passed dimension is larger than paperwidth
+\DeclareMediaQueryMatcher{min-paperwidth}{
   \dim_compare:nT{\paperwidth<#1}{\mediaquerytrue}
+}
+
+% match exaxt paperwidth
+\DeclareMediaQueryMatcher{paperwidth}{
+  \dim_compare:nT{\paperwidth=#1}{\mediaquerytrue}
+}
+
+%  tests if the passed dimension is smaller than paperheight
+\DeclareMediaQueryMatcher{max-paperheight}{
+  \dim_compare:nT{\paperheight>#1}{\mediaquerytrue}
+}
+
+%  tests if the passed dimension is larger than paperheight
+\DeclareMediaQueryMatcher{min-papeheight}{
+  \dim_compare:nT{\paperheight<#1}{\mediaquerytrue}
+}
+
+% match exaxt paperheight
+\DeclareMediaQueryMatcher{paperheight}{
+  \dim_compare:nT{\paperheight=#1}{\mediaquerytrue}
+}
+
+
+%  tests if the passed dimension is smaller than textwidth
+\DeclareMediaQueryMatcher{max-textwidth}{
+  \dim_compare:nT{\textwidth>#1}{\mediaquerytrue}
+}
+
+%  tests if the passed dimension is larger than textwidth
+\DeclareMediaQueryMatcher{min-textwidth}{
+  \dim_compare:nT{\textwidth<#1}{\mediaquerytrue}
+}
+
+% match exaxt textwidth
+\DeclareMediaQueryMatcher{textwidth}{
+  \dim_compare:nT{\textwidth=#1}{\mediaquerytrue}
+}
+
+%  tests if the passed dimension is smaller than textheight
+\DeclareMediaQueryMatcher{max-textheight}{
+  \dim_compare:nT{\textheight>#1}{\mediaquerytrue}
+}
+
+%  tests if the passed dimension is larger than textheight
+\DeclareMediaQueryMatcher{min-textheight}{
+  \dim_compare:nT{\textheight<#1}{\mediaquerytrue}
+}
+
+% match exaxt textheight
+\DeclareMediaQueryMatcher{textheight}{
+  \dim_compare:nT{\textheight=#1}{\mediaquerytrue}
 }
 
 % test if the current page is in landscape mode
