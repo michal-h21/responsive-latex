@@ -111,6 +111,76 @@
   % \DeclareRobustCommand\Huge{\@setfontsize\Huge{\fp_to_dim:n{\dim_to_fp:n{\l_tmpa_dim*2}}}{\fp_to_dim:n{\dim_to_fp:n{\dimen2*2}}}}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Media query support %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prop_new:N \l_responsive_media_query
+\bool_new:N \l_responsive_media_query_matched
+
+
+% define new test for a media query
+% #1 name of test
+% #2 test that can be used in LaTeX 3 boolean query
+\NewDocumentCommand\DeclareMediaQueryMatcher{m m}{
+  \cs_set:cpn{responsive_query_test:#1}##1{#2}
+}
+
+% this command should be used by media query tests to symbolize that they were successful
+\NewDocumentCommand\mediaquerytrue{}{\bool_set_true:N\l_responsive_media_query_matched}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% media query tests %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% max-width tests if the passed dimension is smaller than paperwidth
+\DeclareMediaQueryMatcher{max-width}{
+  \dim_compare:nT{\paperwidth>=#1}{\mediaquerytrue}
+}
+
+% min-width tests if the passed dimension is larger than paperwidth
+\DeclareMediaQueryMatcher{min-width}{
+  \dim_compare:nT{\paperwidth<#1}{\mediaquerytrue}
+}
+
+% test if the current page is in landscape mode
+% we assume that if \paperwidth / \paperheight > 1 then we are in the landscape mode
+\DeclareMediaQueryMatcher{orientation}{
+  \str_if_eq:nnTF{#1}{landscape}{
+    \fp_compare:nT{\dim_ratio:nn{\paperwidth}{\paperheight} > 1}{\mediaquerytrue}
+  }{
+    \fp_compare:nT{\dim_ratio:nn{\paperwidth}{\paperheight} < 1}{\mediaquerytrue}
+  }
+}
+
+
+% find if handler exists for the passed media query type and execute it
+\cs_set:Npn \l_responsive_handle_media_query#1#2{
+  \cs_if_exist_use:cTF{responsive_query_test:#1}{{#2}}{}
+}
+
+% #1 - media query
+% #2 - code executed when query matches
+% #3 - code executed when query fails
+\NewDocumentCommand\mediaquery{m m m}{
+  % change the list of media queries to a property list, which we can loop over
+  \prop_set_from_keyval:Nn\l_responsive_media_query{#1}
+  % loop over all media queries
+  \prop_map_inline:Nn\l_responsive_media_query{
+    % initialize boolean condition for media queries
+    \bool_set_false:N\l_responsive_media_query_matched
+    % the media query handler must use \mediaquerytrue if the query matches
+    \l_responsive_handle_media_query{##1}{##2}
+    % escape the loop immediately if the query doesn't run \mediaquerytrue
+    \bool_if:NF\l_responsive_media_query_matched{\prop_map_break:}
+  }
+  %
+  \bool_if:NTF\l_responsive_media_query_matched{#2}{#3}
+
+}
+
+
+
 % setup font sizes at the begin document, in order to support Geometry etc.
 \AtBeginDocument{
   % set the default font size, based on numbers of characters we want to show on a line of text
