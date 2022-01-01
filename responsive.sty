@@ -83,7 +83,7 @@
   % calculate line height. inspired by https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
   \dimen2=\fp_to_dim:n {\dim_to_fp:n{1ex} * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}) / (#1/100)}
   \fontsize{\l_tmpa_dim}{\dimen2}\selectfont%
-  \typeout{calculated: \fp_to_dim:n {\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}}, \f@size, \the\baselineskip}%
+  \typeout{calculated font size: \fp_to_dim:n {\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}}, \f@size, \the\baselineskip}%
 }
 
 % calculate typographic scale 
@@ -95,8 +95,7 @@
 
 
 \newcommand\setsizes[1]{%
-  \typeout{a jsme aspoň tady? #1}
-  \fonttobox[32]\textwidth{#1}%
+  \fonttobox[32]{\textwidth}{#1}%
   % \let\orig@normalsize\normalsize%
   % \fp_set:Nn\l_resp_scaler_fp{2}
   % \fp_set:Nn\l_resp_scalen_fp{5}
