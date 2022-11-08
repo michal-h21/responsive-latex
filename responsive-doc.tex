@@ -3,20 +3,24 @@
 \usepackage{fontspec}
 \setmainfont{Linux Libertine O}
 \usepackage{lipsum}
-\usepackage[a4paper,margin=1cm]{geometry}
-\AtBeginDocument{}
-\begin{document}\newgeometry{margin=1cm, foot=0em}
+% \usepackage[a4paper,margin=1cm]{geometry}
+% \AtBeginDocument{\newgeometry{margin=1em, bottom=2em, foot=1em}}
+\begin{document}
 \parindent=1.5em
 
 \section{Introduction}
 
-Hello world\footnote{How about footnotes? Especially if they span multiple lines.}, \lipsum[1]
+Hello world\footnote{How about footnotes? Especially if they span multiple lines. \lipsum[6]}, \lipsum[1-2]
 
 \begin{quotation}
   So, quotations may have issue
 \end{quotation}
 
 \lipsum[2]
+\[
+  a=b
+\]
+\lipsum[6]
 
 \begin{itemize}
   \item And lists
@@ -24,6 +28,7 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
 \end{itemize}
 
 \lipsum[3]
+
 
 \begin{table}[hbp]
   \begin{tabular}{l l}
@@ -34,4 +39,36 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
 \end{table}
 
 \lipsum[2-3]
+
+\noindent\fbox{
+\begin{minipage}{8cm}
+  
+  \setsizes[38]{28}
+
+  {\huge huge }
+
+  {\large large}
+
+  normal 
+
+
+  {\scriptsize scriptsize}
+\end{minipage}
+}\fbox{
+\begin{minipage}{4cm}
+  \setsizes[38]{28}
+
+  \mediaquery{min-textwidth=5cm}{media query matched}{media query not matched}
+
+  {\huge huge }
+
+  {\large large}
+
+  normal 
+
+
+  {\scriptsize scriptsize}
+\end{minipage}
+}
+
 \end{document}
