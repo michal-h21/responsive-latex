@@ -94,8 +94,9 @@
 }
 
 
-\newcommand\setsizes[1]{%
-  \fonttobox[32]{\textwidth}{#1}%
+% #1 number of characters that should fit to a text line
+\newcommand\setsizes[2][32]{%
+  \fonttobox[#1]{\textwidth}{#2}%
   % \let\orig@normalsize\normalsize%
   % \fp_set:Nn\l_resp_scaler_fp{2}
   % \fp_set:Nn\l_resp_scalen_fp{5}
