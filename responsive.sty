@@ -83,7 +83,7 @@
   % calculate line height. inspired by https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
   \dimen2=\fp_to_dim:n {\dim_to_fp:n{1ex} * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}) / (#1/100)}
   \fontsize{\l_tmpa_dim}{\dimen2}\selectfont%
-  \typeout{calculated font size: \fp_to_dim:n {\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}}, \f@size, \the\baselineskip}%
+  \typeout{calculated~font~size: \fp_to_dim:n {\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}}, \f@size, \the\baselineskip}%
 }
 
 % calculate typographic scale 
@@ -93,10 +93,10 @@
   \fp_to_dim:n{\dim_to_fp:n{#1} * (#3 ^ (#2/#4)) }
 }
 
-
-% #1 number of characters that should fit to a text line
+% #1 line spacing ratio 
+% #2 number or characters that should fit to a text line
 \newcommand\setsizes[2][32]{%
-  \fonttobox[#1]{\textwidth}{#2}%
+  \fonttobox[#1]{\textwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
   % \let\orig@normalsize\normalsize%
   % \fp_set:Nn\l_resp_scaler_fp{2}
   % \fp_set:Nn\l_resp_scalen_fp{5}
@@ -238,7 +238,7 @@
 \AtBeginDocument{
   % set the default font size, based on numbers of characters we want to show on a line of text
   % \fonttobox[32]\textwidth{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_resp_charlines_int}}%
-  \setsizes{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_resp_charlines_int}}
+  \setsizes{\l_resp_charlines_int}
 }
 
 
