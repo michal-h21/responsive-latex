@@ -11,6 +11,20 @@ idxgroup = Package keys,
 % printtype = \textit{key}
 ]{Key}{key}
 
+\newcommand\printsize[1]{\bgroup\csname #1\endcsname\par\noindent\detokenize{#1}\egroup\par}
+\newcommand\showscale[2][.3\textwidth]{%
+  \noindent\fbox{%
+    \begin{minipage}{#1}
+      \ResponsiveSetup{#2}
+      \setsizes{25}
+      \printsize{huge}
+      \printsize{large}
+      \printsize{normalsize}
+      \printsize{small}
+    \end{minipage}
+  }
+}
+
 \makeindex
 
 \begin{document}
@@ -33,6 +47,9 @@ from smartphones or e-ink readers to printed A4.
 \subsection{Fitting Font Size to the Page Size}
 
 \subsection{Typographic Scale}
+
+\showscale{}
+\showscale{scale=golden}
 
 \subsection{Media Queries}
 
