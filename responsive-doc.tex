@@ -11,16 +11,19 @@ idxgroup = Package keys,
 % printtype = \textit{key}
 ]{Key}{key}
 
-\newcommand\printsize[1]{\bgroup\csname #1\endcsname\par\noindent\detokenize{#1}\egroup\par}
-\newcommand\showscale[2][.3\textwidth]{%
+\newcommand\printsize[1]{\bgroup\csname #1\endcsname\par\noindent Sample\egroup\par}
+\newcommand\showscale[2][.5\textwidth]{%
   \noindent\fbox{%
     \begin{minipage}{#1}
       \ResponsiveSetup{#2}
-      \setsizes{25}
+      \setsizes[38]{25}
       \printsize{huge}
+      \printsize{LARGE}
+      \printsize{Large}
       \printsize{large}
       \printsize{normalsize}
       \printsize{small}
+      \printsize{footnotesize}
     \end{minipage}
   }
 }
@@ -48,7 +51,10 @@ from smartphones or e-ink readers to printed A4.
 
 \subsection{Typographic Scale}
 
+
 \showscale{}
+\showscale{scale=heptatonic}
+\showscale{scale=tritonic}
 \showscale{scale=golden}
 
 \subsection{Media Queries}
@@ -66,6 +72,10 @@ or later in the document using the \cmd{\ResponsiveSetup} command.
 later using the \cmd{\setsizes} command.
 
 \noindent \DescribeKey{scale} Select typographic scale
+
+\noindent \DescribeKey{number} Number of steps before the scale reaches the next multiplication point.
+
+\noindent \DescribeKey{ratio} 
 
 
 
