@@ -18,7 +18,7 @@
 \tl_set:Nn\l_resp_scaletype_str {pentatonic}
 
 % these numbers are used in the typo scale calculation
-\fp_new:N\l_resp_scalen_fp
+\fp_new:N\l_resp_scalen_fp 
 \fp_new:N\l_resp_scaler_fp
 
 \bool_new:N\l_resp_no_execute
@@ -27,7 +27,7 @@
 \keys_define:nn {responsive} {
   characters .int_set:N = \l_resp_charlines_int,
   noautomatic .bool_set:N = \l_resp_no_execute,
-  quantity .fp_set:N = \l_resp_scalen_fp,
+  number .fp_set:N = \l_resp_scalen_fp,
   ratio .fp_set:N =\l_resp_scaler_fp,
   scale .tl_set:N = \l_resp_scaletype_str,
 }
