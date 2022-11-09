@@ -44,8 +44,9 @@
 \fp_new:N\l_resp_scalen_fp
 \fp_new:N\l_resp_scaler_fp
 
-% decide which typographic scale should be used
+
 \NewDocumentCommand\ResponsiveScale{O{\l_resp_scaletype_str}}{
+  % decide which typographic scale should be used in \setfontsize
   \str_case_e:nn{\l_resp_scaletype_str}{
     {heptatonic}{
       \fp_set:Nn\l_resp_scaler_fp{2}
@@ -70,6 +71,7 @@
   }
 }
 
+% set default scale
 \ResponsiveScale
 
 % enable setting of the keys also in the document
