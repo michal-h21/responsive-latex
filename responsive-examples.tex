@@ -56,9 +56,12 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
 \end{minipage}
 }\fbox{
 \begin{minipage}{4cm}
-  \setsizes[38]{28}
 
-  \mediaquery{min-textwidth=5cm}{media query matched}{media query not matched}
+  \mediaquery{min-textwidth=5cm}{
+    media query matched
+    \ResponsiveSetup{scale=tetratonic}
+    \setsizes[38]{28}
+  }{media query not matched}
 
   {\huge huge }
 
