@@ -74,7 +74,7 @@
 
 % enable setting of the keys also in the document
 \NewDocumentCommand\ResponsiveSetup{m}{%
-  keys_set:nn {responsive} {#1}
+  \keys_set:nn {responsive} {#1}
   \ResponsiveScale
 }
 % change font size to fix text to a given width
