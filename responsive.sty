@@ -151,16 +151,16 @@
   % save dimensions calculated in \fonttobox in non-temporary variables
   \resp_font_size=\l_tmpa_dim
   \resp_line_skip=\dimen2
-  \DeclareRobustCommand\normalsize{\resp_set_font_size:Nn\normalsize{1}\resp_skips:n{1}}%
+  \DeclareRobustCommand\normalsize{\resp_set_font_size:Nn\normalsize{0}\resp_skips:n{1}}%
   \DeclareRobustCommand\tiny{\resp_set_font_size:Nn\tiny{-3}}
   \DeclareRobustCommand\scriptsize{\resp_set_font_size:Nn\scriptsize{-2}}
   \DeclareRobustCommand\small{\resp_set_font_size:Nn\small{-1}\resp_skips:n{-1}}
   \DeclareRobustCommand\footnotesize{\resp_set_font_size:Nn\footnotesize{-2}\resp_skips:n{-2}}
-  \DeclareRobustCommand\large{\resp_set_font_size:Nn\large{2}}
-  \DeclareRobustCommand\Large{\resp_set_font_size:Nn\Large{3}}
-  \DeclareRobustCommand\LARGE{\resp_set_font_size:Nn\LARGE{4}}
-  \DeclareRobustCommand\huge{\resp_set_font_size:Nn\huge{5}}
-  \DeclareRobustCommand\Huge{\resp_set_font_size:Nn\Huge{6}}
+  \DeclareRobustCommand\large{\resp_set_font_size:Nn\large{1}}
+  \DeclareRobustCommand\Large{\resp_set_font_size:Nn\Large{2}}
+  \DeclareRobustCommand\LARGE{\resp_set_font_size:Nn\LARGE{3}}
+  \DeclareRobustCommand\huge{\resp_set_font_size:Nn\huge{4}}
+  \DeclareRobustCommand\Huge{\resp_set_font_size:Nn\Huge{5}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
