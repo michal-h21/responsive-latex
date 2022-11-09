@@ -26,7 +26,6 @@
 
 \ProcessKeysOptions{responsive}
 
-
 % the \l_resp_charlist_tl is used to construct string used for line length measurement
 \str_new:N\l_resp_alphabet_tl
 \str_new:N\l_resp_charlist_tl
@@ -46,29 +45,38 @@
 \fp_new:N\l_resp_scaler_fp
 
 % decide which typographic scale should be used
-\str_case_e:nn{\l_resp_scaletype_str}{
-  {heptatonic}{
-  \fp_set:Nn\l_resp_scaler_fp{2}
-  \fp_set:Nn\l_resp_scalen_fp{7}
-  }
-  {pentatonic}{
-  \fp_set:Nn\l_resp_scaler_fp{2}
-  \fp_set:Nn\l_resp_scalen_fp{5}
-  }
-  {tetratonic}{
-  \fp_set:Nn\l_resp_scaler_fp{2}
-  \fp_set:Nn\l_resp_scalen_fp{4}
-  }
-  {tritonic}{
-  \fp_set:Nn\l_resp_scaler_fp{2}
-  \fp_set:Nn\l_resp_scalen_fp{3}
-  }
-  {golden}{
-  \fp_set:Nn\l_resp_scaler_fp{1.618}
-  \fp_set:Nn\l_resp_scalen_fp{2}
+\NewDocumentCommand\ResponsiveScale{O{\l_resp_scaletype_str}}{
+  \str_case_e:nn{\l_resp_scaletype_str}{
+    {heptatonic}{
+      \fp_set:Nn\l_resp_scaler_fp{2}
+      \fp_set:Nn\l_resp_scalen_fp{7}
+    }
+    {pentatonic}{
+      \fp_set:Nn\l_resp_scaler_fp{2}
+      \fp_set:Nn\l_resp_scalen_fp{5}
+    }
+    {tetratonic}{
+      \fp_set:Nn\l_resp_scaler_fp{2}
+      \fp_set:Nn\l_resp_scalen_fp{4}
+    }
+    {tritonic}{
+      \fp_set:Nn\l_resp_scaler_fp{2}
+      \fp_set:Nn\l_resp_scalen_fp{3}
+    }
+    {golden}{
+      \fp_set:Nn\l_resp_scaler_fp{1.618}
+      \fp_set:Nn\l_resp_scalen_fp{2}
+    }
   }
 }
 
+\ResponsiveScale
+
+% enable setting of the keys also in the document
+\NewDocumentCommand\ResponsiveSetup{m}{%
+  keys_set:nn {responsive} {#1}
+  \ResponsiveScale
+}
 % change font size to fix text to a given width
 % usage \fonttobox{\textwidth}{hello world}
 % optional parameter changes line spacing, smaller the value, bigger the spacing
