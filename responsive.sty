@@ -92,8 +92,11 @@
 % https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
 \NewDocumentCommand\fonttobox{O{38} m m}{
   % set initial fontsize and typeset text in a box
-  \fontsize{10}{12}\selectfont
-  \dimen1=#2\relax\setbox0=\hbox{#3}%
+  \dimen1=#2\relax%
+  \begingroup% change font size only locally
+  \fontsize{10}{12}\selectfont%
+  \global\setbox0=\hbox{#3}%
+  \endgroup%
   % calculate ratio betwen the typeset box and desired width
   \l_tmpa_dim=\fp_to_dim:n {\f@size * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0})}%
   % calculate line height. inspired by https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
@@ -102,6 +105,9 @@
   \typeout{calculated~font~size: \fp_to_dim:n {\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}}, \f@size, \the\baselineskip}%
 }
 
+\dim_new:N\resp_font_size
+\dim_new:N\resp_line_skip
+
 % calculate typographic scale 
 % based on formula from https://spencermortensen.com/articles/typographic-scale/
 % #1 - base size, #2, number of note, #3 r, #4 n
@@ -109,24 +115,52 @@
   \fp_to_dim:n{\dim_to_fp:n{#1} * (#3 ^ (#2/#4)) }
 }
 
+
+% calculate font size for the given note and multiply it
+% #2 number of note, #3 multiplication factor
+\cs_set:Npn\resp_multiply_note:nnn #1#2#3{
+  \fp_to_dim:n{\dim_to_fp:n{#1} * (\l_resp_scaler_fp ^ (#2/\l_resp_scalen_fp)) * #3 }
+}
+
+% calculate font size for the given note and multiply it
+% #1 number of note, #2 multiplication factor
+\cs_set:Npn\resp_multiply_font_size:nn #1#2{
+  % \fp_to_dim:n{\dim_to_fp:n{\resp_font_size} * (\l_resp_scaler_fp ^ (#1/\l_resp_scalen_fp)) * #2 }
+  \resp_multiply_note:nnn\resp_font_size{#1}{#2}
+}
+
+% Copy of skip setting commands from size10.clo
+% Instead of hardcoded values, we use calculations based on the font size
+\cs_set:Npn\resp_skips:n #1{
+  \abovedisplayskip \resp_multiply_font_size:nn{#1}{1} \@plus\resp_multiply_font_size:nn{#1}{0.2} \@minus\resp_multiply_font_size:nn{#1}{0.5}
+  \abovedisplayshortskip \z@ \@plus\resp_multiply_font_size:nn{#1}{0.3}
+  \belowdisplayshortskip \resp_multiply_font_size:nn{#1}{0.6} \@plus\resp_multiply_font_size:nn{#1}{0.3} \@minus\resp_multiply_font_size:nn{#1}{0.3}
+  \belowdisplayskip \abovedisplayskip
+}
+
+% #1 font command, #2 note number
+\cs_set:Npn\resp_set_font_size:Nn #1#2{%
+  \@setfontsize#1{\resp_multiply_note:nnn\resp_font_size{#2}{1}}{\resp_multiply_note:nnn\resp_line_skip{#2}{1}}
+}
+
+
 % #1 line spacing ratio 
 % #2 number or characters that should fit to a text line
 \NewDocumentCommand\setsizes{O{32} m}{%
   \fonttobox[#1]{\textwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
-  % \let\orig@normalsize\normalsize%
-  % \fp_set:Nn\l_resp_scaler_fp{2}
-  % \fp_set:Nn\l_resp_scalen_fp{5}
-  \DeclareRobustCommand\normalsize{\@setfontsize\normalsize{\l_tmpa_dim}{\dimen2}}%
-  \DeclareRobustCommand\tiny{\@setfontsize\tiny{\typoscale{\l_tmpa_dim}{-3}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{-3}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\scriptsize{\@setfontsize\scriptsize{\typoscale{\l_tmpa_dim}{-2}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{-2}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\small{\@setfontsize\small{\typoscale{\l_tmpa_dim}{-1}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{-1}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\footnotesize{\@setfontsize\footnotesize{\typoscale{\l_tmpa_dim}{-2}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{-2}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\large{\@setfontsize\normalsize{\typoscale{\l_tmpa_dim}{2}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{2}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\Large{\@setfontsize\Large{\typoscale{\l_tmpa_dim}{3}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{3}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\LARGE{\@setfontsize\LARGE{\typoscale{\l_tmpa_dim}{4}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{4}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\huge{\@setfontsize\huge{\typoscale{\l_tmpa_dim}{5}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{5}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  \DeclareRobustCommand\Huge{\@setfontsize\Huge{\typoscale{\l_tmpa_dim}{6}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}{\typoscale{\dimen2}{6}{\l_resp_scaler_fp}{\l_resp_scalen_fp}}}
-  % \DeclareRobustCommand\Huge{\@setfontsize\Huge{\fp_to_dim:n{\dim_to_fp:n{\l_tmpa_dim*2}}}{\fp_to_dim:n{\dim_to_fp:n{\dimen2*2}}}}
+  % save dimensions calculated in \fonttobox in non-temporary variables
+  \resp_font_size=\l_tmpa_dim
+  \resp_line_skip=\dimen2
+  \DeclareRobustCommand\normalsize{\resp_set_font_size:Nn\normalsize{1}\resp_skips:n{1}}%
+  \DeclareRobustCommand\tiny{\resp_set_font_size:Nn\tiny{-3}}
+  \DeclareRobustCommand\scriptsize{\resp_set_font_size:Nn\scriptsize{-2}}
+  \DeclareRobustCommand\small{\resp_set_font_size:Nn\small{-1}\resp_skips:n{-1}}
+  \DeclareRobustCommand\footnotesize{\resp_set_font_size:Nn\footnotesize{-2}\resp_skips:n{-2}}
+  \DeclareRobustCommand\large{\resp_set_font_size:Nn\large{2}}
+  \DeclareRobustCommand\Large{\resp_set_font_size:Nn\Large{3}}
+  \DeclareRobustCommand\LARGE{\resp_set_font_size:Nn\LARGE{4}}
+  \DeclareRobustCommand\huge{\resp_set_font_size:Nn\huge{5}}
+  \DeclareRobustCommand\Huge{\resp_set_font_size:Nn\Huge{6}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
