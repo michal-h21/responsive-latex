@@ -1,7 +1,18 @@
 \documentclass{ltxdoc}
 
-\title{The Responsive package}
-\author{Michal Hoftich}
+\usepackage[noautomatic]{responsive}
+\title{The Responsive Package}
+\author{Michal Hoftich\thanks{\url{michal.h21@gmail.com}}}
+\NewDocElement[macrolike = false ,
+toplevel = false,
+idxtype
+= key,
+idxgroup = Package keys,
+% printtype = \textit{key}
+]{Key}{key}
+
+\makeindex
+
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -17,7 +28,38 @@ from smartphones or e-ink readers to printed A4.
 \end{abstract}
 \tableofcontents
 
-\section{Package options}
+\section{Features}
+
+\subsection{Fitting Font Size to the Page Size}
+
+\subsection{Typographic Scale}
+
+\subsection{Media Queries}
+
+\section{Package Options}
+
+The following options can be passed as package uptions used in \cmd{\usepackage}, 
+or later in the document using the \cmd{\ResponsiveSetup} command.
+
+\medskip
+
+\noindent \DescribeKey{characters} Set aproximate number of characters that should fit to a text line.
+
+\noindent \DescribeKey{noautomatic}  Disable automatic setting of font sizes in the document. You can set them 
+later using the \cmd{\setsizes} command.
+
+\noindent \DescribeKey{scale} Select typographic scale
+
+
+
+
 \section{Commands}
+
+\DescribeMacro\setsizes
+\cmd\setsizes\oarg{xxx}\marg{characters per lines}
+
+% \PrintIndex
+
+\section{Examples}
 
 \end{document}
