@@ -194,14 +194,14 @@
 %% media query tests %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-%  tests if the passed dimension is smaller than paperwidth
+%  tests if the passed dimension is larger than paperwidth
 \DeclareMediaQueryMatcher{max-paperwidth}{
-  \dim_compare:nT{\paperwidth>#1}{\mediaquerytrue}
+  \dim_compare:nT{\paperwidth<#1}{\mediaquerytrue}
 }
 
-%  tests if the passed dimension is larger than paperwidth
+%  tests if the passed dimension is smaller than paperwidth
 \DeclareMediaQueryMatcher{min-paperwidth}{
-  \dim_compare:nT{\paperwidth<#1}{\mediaquerytrue}
+  \dim_compare:nT{\paperwidth>#1}{\mediaquerytrue}
 }
 
 % match exaxt paperwidth
@@ -209,14 +209,14 @@
   \dim_compare:nT{\paperwidth=#1}{\mediaquerytrue}
 }
 
-%  tests if the passed dimension is smaller than paperheight
+%  tests if the passed dimension is larger than paperheight
 \DeclareMediaQueryMatcher{max-paperheight}{
-  \dim_compare:nT{\paperheight>#1}{\mediaquerytrue}
+  \dim_compare:nT{\paperheight<#1}{\mediaquerytrue}
 }
 
-%  tests if the passed dimension is larger than paperheight
+%  tests if the passed dimension is smaller than paperheight
 \DeclareMediaQueryMatcher{min-papeheight}{
-  \dim_compare:nT{\paperheight<#1}{\mediaquerytrue}
+  \dim_compare:nT{\paperheight>#1}{\mediaquerytrue}
 }
 
 % match exaxt paperheight
@@ -227,12 +227,12 @@
 
 %  tests if the passed dimension is smaller than textwidth
 \DeclareMediaQueryMatcher{max-textwidth}{
-  \dim_compare:nT{\textwidth>#1}{\mediaquerytrue}
+  \dim_compare:nT{\textwidth<#1}{\mediaquerytrue}
 }
 
 %  tests if the passed dimension is larger than textwidth
 \DeclareMediaQueryMatcher{min-textwidth}{
-  \dim_compare:nT{\textwidth<#1}{\mediaquerytrue}
+  \dim_compare:nT{\textwidth>#1}{\mediaquerytrue}
 }
 
 % match exaxt textwidth
@@ -240,14 +240,14 @@
   \dim_compare:nT{\textwidth=#1}{\mediaquerytrue}
 }
 
-%  tests if the passed dimension is smaller than textheight
+%  tests if the passed dimension is larger than textheight
 \DeclareMediaQueryMatcher{max-textheight}{
-  \dim_compare:nT{\textheight>#1}{\mediaquerytrue}
+  \dim_compare:nT{\textheight<#1}{\mediaquerytrue}
 }
 
-%  tests if the passed dimension is larger than textheight
+%  tests if the passed dimension is smaller than textheight
 \DeclareMediaQueryMatcher{min-textheight}{
-  \dim_compare:nT{\textheight<#1}{\mediaquerytrue}
+  \dim_compare:nT{\textheight>#1}{\mediaquerytrue}
 }
 
 % match exaxt textheight
