@@ -11,7 +11,7 @@ idxgroup = Package keys,
 % printtype = \textit{key}
 ]{Key}{key}
 
-\newcommand\printsize[1]{\bgroup\csname #1\endcsname\par\noindent Sample\egroup\par}
+\newcommand\printsize[1]{\csname #1\endcsname\par\noindent Sample\par}
 \newcommand\showscale[2][.5\textwidth]{%
   \noindent\fbox{%
     \begin{minipage}{#1}
@@ -78,6 +78,8 @@ later using the \cmd{\setsizes} command.
 \noindent \DescribeKey{ratio} 
 
 \noindent \DescribeKey{lineratio} 
+
+\noindent \DescribeKey{boxwidth} Width of line that is used for font size calculations in the \cmd{\setsizes} command.
 
 
 
