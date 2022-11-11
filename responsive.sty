@@ -93,10 +93,8 @@
 \NewDocumentCommand\fonttobox{O{38} m m}{
   % set initial fontsize and typeset text in a box
   \dimen1=#2\relax%
-  \begingroup% change font size only locally
   \fontsize{10}{12}\selectfont%
-  \global\setbox0=\hbox{#3}%
-  \endgroup%
+  \setbox0=\hbox{#3}%
   % calculate ratio betwen the typeset box and desired width
   \l_tmpa_dim=\fp_to_dim:n {\f@size * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0})}%
   % calculate line height. inspired by https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
@@ -140,6 +138,7 @@
 
 % #1 font command, #2 note number
 \cs_set:Npn\resp_set_font_size:Nn #1#2{%
+  \typeout{*********** calculating \detokenize{#1}: \resp_multiply_note:nnn\resp_font_size{#2}{1}, \resp_multiply_note:nnn\resp_line_skip{#2}{1}}
   \@setfontsize#1{\resp_multiply_note:nnn\resp_font_size{#2}{1}}{\resp_multiply_note:nnn\resp_line_skip{#2}{1}}
 }
 
