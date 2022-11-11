@@ -13,6 +13,11 @@
 \int_new:N\l_resp_charlines_int
 \l_resp_charlines_int = 55
 
+% line height ratio
+% see https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
+% for more details
+\int_new:N\l_resp_lineheight_ratio
+\l_resp_lineheight_ratio = 32
 % type of typograhic scale
 \tl_new:N\l_resp_scaletype_str
 \tl_set:Nn\l_resp_scaletype_str {pentatonic}
@@ -30,6 +35,7 @@
   number .fp_set:N = \l_resp_scalen_fp,
   ratio .fp_set:N =\l_resp_scaler_fp,
   scale .tl_set:N = \l_resp_scaletype_str,
+  lineratio .tl_set:N = \l_resp_lineheight_ratio
 }
 
 
@@ -90,7 +96,7 @@
 % optional parameter changes line spacing, smaller the value, bigger the spacing
 % details about the value are in the following article:
 % https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
-\NewDocumentCommand\fonttobox{O{38} m m}{
+\NewDocumentCommand\fonttobox{O{\l_resp_lineheight_ratio} m m}{
   % set initial fontsize and typeset text in a box
   \dimen1=#2\relax%
   \fontsize{10}{12}\selectfont%
@@ -144,7 +150,7 @@
 
 % #1 line spacing ratio 
 % #2 number or characters that should fit to a text line
-\NewDocumentCommand\setsizes{O{32} m}{%
+\NewDocumentCommand\setsizes{O{\l_resp_lineheight_ratio} m}{%
   \fonttobox[#1]{\textwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
   % save dimensions calculated in \fonttobox in non-temporary variables
   \resp_font_size=\l_tmpa_dim
