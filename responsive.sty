@@ -29,13 +29,17 @@
 \bool_new:N\l_resp_no_execute
 \bool_set_false:N\l_resp_no_execute  
 
+\tl_new:N\l_resp_boxwidth
+\tl_set:Nn \l_resp_boxwidth \textwidth
+
 \keys_define:nn {responsive} {
   characters .int_set:N = \l_resp_charlines_int,
   noautomatic .bool_set:N = \l_resp_no_execute,
   number .fp_set:N = \l_resp_scalen_fp,
   ratio .fp_set:N =\l_resp_scaler_fp,
   scale .tl_set:N = \l_resp_scaletype_str,
-  lineratio .tl_set:N = \l_resp_lineheight_ratio
+  lineratio .int_set:N = \l_resp_lineheight_ratio,
+  boxwidth .tl_set:N = \l_resp_boxwidth,
 }
 
 
@@ -151,7 +155,7 @@
 % #1 line spacing ratio 
 % #2 number or characters that should fit to a text line
 \NewDocumentCommand\setsizes{O{\l_resp_lineheight_ratio} m}{%
-  \fonttobox[#1]{\textwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
+  \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
   % save dimensions calculated in \fonttobox in non-temporary variables
   \resp_font_size=\l_tmpa_dim
   \resp_line_skip=\dimen2
