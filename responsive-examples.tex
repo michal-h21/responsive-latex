@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{responsive}
+\usepackage{linebreaker}
 \usepackage{fontspec}
 \setmainfont{Linux Libertine O}
 \usepackage{lipsum}
@@ -52,14 +53,14 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
   
   \setsizes[38]{28}
 
-  {\huge huge }
+  \huge huge
 
-  {\large large}
+  \large large
 
-  normal 
+  \normalsize normal 
 
 
-  {\scriptsize scriptsize}
+  \scriptsize scriptsize
 \end{minipage}
 }\fbox{
 \begin{minipage}{4cm}
@@ -70,14 +71,14 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
     \setsizes[38]{28}
   }{media query not matched}
 
-  {\huge huge }
+  \huge huge
 
-  {\large large}
+  \large large
 
-  normal 
+  \normalsize normal 
 
 
-  {\scriptsize scriptsize}
+  \scriptsize scriptsize
 \end{minipage}
 }
 
@@ -87,14 +88,14 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
   \ResponsiveSetup{scale=tritonic}
   \setsizes[38]{28}
 
-  {\huge huge }
+  \huge huge
 
-  {\large large}
+  \large large
 
-  normal 
+  \normalsize normal 
 
 
-  {\scriptsize scriptsize}
+  \scriptsize scriptsize
 \end{minipage}
 }
 \fbox{
@@ -103,14 +104,13 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
   \ResponsiveSetup{scale=heptatonic}
   \setsizes[38]{28}
 
-  {\huge huge }
+  \huge huge
 
-  {\large large}
+  \large large
 
-  normal 
+  \normalsize normal 
 
-
-  {\scriptsize scriptsize}
+  \scriptsize scriptsize
 \end{minipage}
 }
 \fbox{
@@ -119,24 +119,28 @@ Hello world\footnote{How about footnotes? Especially if they span multiple lines
   \ResponsiveSetup{number=10,ratio=6}
   \setsizes[38]{28}
 
-  {\huge huge }
+  \huge huge
 
-  {\large large}
+  \large large
 
-  {\normalsize normal}
+  \normalsize normal
 
 
-  {\scriptsize scriptsize}
+  \scriptsize scriptsize
 \end{minipage}
 }
 
-{\tiny 
+{
 
-\lipsum[1]}
+  \tiny 
 
-{\footnotesize 
+\lipsum[1-2]
 
-\lipsum[1]}
+  \footnotesize 
+
+\lipsum[1-3]
+
+}
 
 Text after all examples.
 \end{document}
