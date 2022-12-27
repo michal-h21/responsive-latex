@@ -152,6 +152,19 @@
   \@setfontsize#1{\resp_multiply_note:nnn\resp_font_size{#2}{1}}{\resp_multiply_note:nnn\resp_line_skip{#2}{1}}
 }
 
+\cs_set:Npn\resp_textheight:n {
+  \setlength\textheight{\fp_eval:n{floor(\textheight/\resp_line_skip) * \resp_line_skip }pt}
+  % \setlength\headheight{\resp_font_size}
+  % \setlength\maxdepth{\resp_line_skip}
+  % \setlength\@tempdima{\paperheight}
+  % \addtolength\@tempdima{-2in}
+  % \addtolength\@tempdima{-1.5in}
+  % \divide\@tempdima\resp_line_skip
+  % \@tempcnta=\@tempdima
+  % \setlength\textheight{\@tempcnta\resp_line_skip}
+  % \addtolength\textheight{\topskip}
+}
+
 
 % #1 line spacing ratio 
 % #2 number or characters that should fit to a text line
@@ -170,6 +183,8 @@
   \DeclareRobustCommand\LARGE{\resp_set_font_size:Nn\LARGE{3}}
   \DeclareRobustCommand\huge{\resp_set_font_size:Nn\huge{4}}
   \DeclareRobustCommand\Huge{\resp_set_font_size:Nn\Huge{5}}
+  \resp_textheight:n%
+  \parindent=\fp_to_dim:n{\resp_font_size * 1.5}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
