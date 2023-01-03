@@ -152,27 +152,13 @@
   \@setfontsize#1{\resp_multiply_note:nnn\resp_font_size{#2}{1}}{\resp_multiply_note:nnn\resp_line_skip{#2}{1}}
 }
 
+% recalculate \textheight and \headheight with the changed font size
+% this is necessary to prevent the underfull \vbox messages from the output rutine
 \cs_set:Npn\resp_textheight:n {
   \setlength\textheight{\fp_eval:n{floor(\textheight/\resp_line_skip) * \resp_line_skip }pt}
-  % \addtolength\textheight{\topskip}
-  \setlength\topskip{\resp_font_size}
+  \setlength\topskip{\resp_line_skip}
   \setlength\headheight{\resp_font_size}
   \addtolength\textheight{\topskip}
-  % \setlength\topmargin{\paperheight}
-  % \addtolength\topmargin{-2in}
-  % \addtolength\topmargin{-\headheight}
-  % \addtolength\topmargin{-\headsep}
-  % \addtolength\topmargin{-\textheight}
-  % \addtolength\topmargin{-\footskip}     % this might be wrong!
-  % \addtolength\topmargin{-.5\topmargin}
-  % \@settopoint\topmargin
-  \setlength\maxdepth{0.5\topskip}
-  % \setlength\@tempdima{\paperheight}
-  % \addtolength\@tempdima{-2in}
-  % \addtolength\@tempdima{-1.5in}
-  % \divide\@tempdima\resp_line_skip
-  % \@tempcnta=\@tempdima
-  % \setlength\textheight{\@tempcnta\resp_line_skip}
 }
 
 % the functionality to fix the textheight should be available as a document command
