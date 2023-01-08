@@ -17,7 +17,7 @@
 % see https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
 % for more details
 \int_new:N\l_resp_lineheight_ratio
-\l_resp_lineheight_ratio = 38
+\l_resp_lineheight_ratio = 34
 % type of typograhic scale
 \tl_new:N\l_resp_scaletype_str
 \tl_set:Nn\l_resp_scaletype_str {pentatonic}
@@ -162,6 +162,7 @@
   % \setlength\topskip{\resp_font_size}
   \addtolength\textheight{\topskip}
   \setlength\maxdepth{0.5\topskip}
+  \setlength\@maxdepth{0.5\topskip}
   \setlength\headheight{\resp_font_size}
   \setlength\headsep   {1.5\resp_font_size}
   \setlength\footskip{\fp_to_dim:n{2*\resp_font_size+1}}
@@ -190,7 +191,12 @@
   \DeclareRobustCommand\LARGE{\resp_set_font_size:Nn\LARGE{3}}
   \DeclareRobustCommand\huge{\resp_set_font_size:Nn\huge{4}}
   \DeclareRobustCommand\Huge{\resp_set_font_size:Nn\Huge{5}}
-  \parindent=\fp_to_dim:n{\resp_font_size * 1.5}
+  \normalsize%
+  \if@twocolumn
+    \parindent=\resp_font_size
+  \else
+    \parindent=\fp_to_dim:n{\resp_font_size * 1.5}
+  \fi
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
