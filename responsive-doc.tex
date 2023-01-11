@@ -1,6 +1,10 @@
 \documentclass{ltxdoc}
 
 \usepackage[noautomatic]{responsive}
+\usepackage{linebreaker}
+\usepackage{fontspec}
+\setmainfont{EB Garamond}
+\usepackage{lipsum}
 \title{The Responsive Package}
 \author{Michal Hoftich\thanks{\url{michal.h21@gmail.com}}}
 \NewDocElement[macrolike = false ,
@@ -16,7 +20,7 @@ idxgroup = Package keys,
   \noindent\fbox{%
     \begin{minipage}{#1}
       \ResponsiveSetup{#2}
-      \setsizes[38]{25}
+      \setsizes[34]{25}
       \printsize{huge}
       \printsize{LARGE}
       \printsize{Large}
@@ -26,6 +30,7 @@ idxgroup = Package keys,
       \printsize{footnotesize}
     \end{minipage}
   }
+    \ifx\relax#2\relax Default parameters\else\texttt{#2}\fi
 }
 
 \makeindex
@@ -46,6 +51,20 @@ from smartphones or e-ink readers to printed A4.
 \tableofcontents
 
 \section{Features}
+
+\begin{figure}[htp]
+  \null\hfill\begin{minipage}{150pt}
+
+    % \ResponsiveSetup{#2g}
+    \setsizes[32]{56}
+
+    
+    {\Huge\par\noindent Huge text\par}
+
+    \lipsum[1]
+  \end{minipage}\hfill\null
+  \caption{Example of responsive typography on a smaller page}
+\end{figure}
 
 \subsection{Fitting Font Size to the Page Size}
 
@@ -92,6 +111,22 @@ later using the \cmd{\setsizes} command.
 
 % \PrintIndex
 
+\section{Troubleshooting}
+
+Occasionally, you can run into issues caused by the change of font sizes. \LaTeX\ sets lot of parameters 
+depending on the base font size. We try to recalculate them according to the new font size, but you can still
+experience some issues, described in following subsections.
+
+\subsection{Error Messages From the Output Routine }
+
+this trick should fix vbox errors in the output routine. 
+we calculate exact box for the font size, but often,
+we would get error when a bigger font is used on the page,
+for example in chapters
+
+There are several 
+  % source: https://tex.stackexchange.com/a/62318/2891
+  \def\@textbottom{\vskip \z@ \@plus \resp_font_size \@minus \resp_font_size}
 \section{Examples}
 
 \end{document}
