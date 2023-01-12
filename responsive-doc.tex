@@ -3,6 +3,8 @@
 \usepackage[noautomatic]{responsive}
 \usepackage{linebreaker}
 \usepackage{fontspec}
+\usepackage{caption}
+\usepackage{subcaption}
 \setmainfont{EB Garamond}
 \usepackage{lipsum}
 \title{The Responsive Package}
@@ -30,7 +32,7 @@ idxgroup = Package keys,
       \printsize{footnotesize}
     \end{minipage}
   }
-    \ifx\relax#2\relax Default parameters\else\texttt{#2}\fi
+    \ifx\relax#2\relax Default parameters\else\texttt{#2}\fi\hfill\null
 }
 
 \makeindex
@@ -78,6 +80,31 @@ from smartphones or e-ink readers to printed A4.
 \showscale{scale=none,ratio=1.3,number=2}
 
 \subsection{Media Queries}
+
+\newcommand\mdtest{%
+  \mediaquery{max-textwidth=4cm}
+  {\ResponsiveSetup{lineratio=38}\setsizes{45}}
+  {\ResponsiveSetup{lineratio=34}\setsizes{60}}
+  \lipsum[1]
+}
+
+\begin{figure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \begin{minipage}{3.9cm}
+      \mdtest
+    \end{minipage}
+    \caption{textwidth=3.9cm}
+  \end{subfigure}
+
+  \begin{subfigure}[b]{0.45\textwidth}
+    \begin{minipage}{6cm}
+      \mdtest
+    \end{minipage}
+    \caption{\texttt{\textbackslash textwidth}=6cm}
+  \end{subfigure}
+  \caption{Example of media query usage.}
+\end{figure}
+
 
 \section{Package Options}
 
