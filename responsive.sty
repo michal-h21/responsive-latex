@@ -96,6 +96,10 @@
   \keys_set:nn {responsive} {#1}
   \ResponsiveScale
 }
+
+\dim_new:N\resp_font_size
+\dim_new:N\resp_line_skip
+
 % change font size to fix text to a given width
 % usage \fonttobox{\textwidth}{hello world}
 % optional parameter changes line spacing, smaller the value, bigger the spacing
@@ -107,15 +111,13 @@
   \fontsize{10}{12}\selectfont%
   \setbox0=\hbox{#3}%
   % calculate ratio betwen the typeset box and desired width
-  \l_tmpa_dim=\fp_to_dim:n {\f@size * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0})}%
+  \resp_font_size=\fp_to_dim:n {\f@size * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0})}%
   % calculate line height. inspired by https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
-  \dimen2=\fp_to_dim:n {\dim_to_fp:n{1ex} * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}) / (#1/100)}
-  \fontsize{\l_tmpa_dim}{\dimen2}\selectfont%
+  \resp_line_skip=\fp_to_dim:n {\dim_to_fp:n{1ex} * (\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}) / (#1/100)}
+  \fontsize{\resp_font_size}{\resp_line_skip}\selectfont%
   \typeout{calculated~font~size: \fp_to_dim:n {\dim_to_fp:n{\dimen1} / \dim_to_fp:n{\wd0}}, \f@size, \the\baselineskip}%
 }
 
-\dim_new:N\resp_font_size
-\dim_new:N\resp_line_skip
 
 % calculate typographic scale 
 % based on formula from https://spencermortensen.com/articles/typographic-scale/
@@ -126,7 +128,7 @@
 
 
 % calculate font size for the given note and multiply it
-% #2 number of note, #3 multiplication factor
+% #1 base font size #2 number of note, #3 multiplication factor
 \cs_set:Npn\resp_multiply_note:nnn #1#2#3{
   \fp_to_dim:n{\dim_to_fp:n{#1} * (\l_resp_scaler_fp ^ (#2/\l_resp_scalen_fp)) * #3 }
 }
@@ -178,9 +180,6 @@
 % #2 number or characters that should fit to a text line
 \NewDocumentCommand\setsizes{O{\l_resp_lineheight_ratio} m}{%
   \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
-  % save dimensions calculated in \fonttobox in non-temporary variables
-  \resp_font_size=\l_tmpa_dim
-  \resp_line_skip=\dimen2
   \DeclareRobustCommand\normalsize{\resp_set_font_size:Nn\normalsize{0}\resp_skips:n{1}}%
   \DeclareRobustCommand\tiny{\resp_set_font_size:Nn\tiny{-3}}
   \DeclareRobustCommand\scriptsize{\resp_set_font_size:Nn\scriptsize{-2}}
