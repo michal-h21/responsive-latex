@@ -5,6 +5,8 @@
 \usepackage{fontspec}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{microtype}
 \setmainfont{EB Garamond}
 \usepackage{lipsum}
 \title{The Responsive Package}
@@ -72,6 +74,9 @@ from smartphones or e-ink readers to printed A4.
 
 \subsection{Typographic Scale}
 
+A typographic scale is a system of organizing type sizes in a harmonious manner, like on musical scale. 
+
+
 
 \showscale{}
 \showscale{scale=heptatonic}
@@ -89,21 +94,27 @@ from smartphones or e-ink readers to printed A4.
 }
 
 \begin{figure}
-  \begin{subfigure}[b]{0.45\textwidth}
+  % \centering
+  % \begin{subcaptionblock}{0.25\textwidth}
+  \begin{subcaptiongroup}
     \begin{minipage}{3.9cm}
-      \mdtest
-    \end{minipage}
+      { \mdtest
+        
+      }
     \caption{textwidth=3.9cm}
-  \end{subfigure}
-
-  \begin{subfigure}[b]{0.45\textwidth}
-    \begin{minipage}{6cm}
-      \mdtest
     \end{minipage}
-    \caption{\texttt{\textbackslash textwidth}=6cm}
-  \end{subfigure}
+    \hspace{2em}
+    \begin{minipage}{6cm}
+      { \mdtest 
+
+      }
+      \caption{\texttt{\textbackslash textwidth}=6cm}
+    \end{minipage}
+  \end{subcaptiongroup}
+  % \end{subcaptionblock}
   \caption{Example of media query usage.}
 \end{figure}
+
 
 
 \section{Package Options}
