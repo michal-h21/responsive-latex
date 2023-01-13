@@ -175,11 +175,7 @@
   \resp_textheight:n%
 }
 
-
-% #1 line spacing ratio 
-% #2 number or characters that should fit to a text line
-\NewDocumentCommand\setsizes{O{\l_resp_lineheight_ratio} m}{%
-  \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
+\cs_set:Npn\resp_declare_font_sizes{%
   \DeclareRobustCommand\normalsize{\resp_set_font_size:Nn\normalsize{0}\resp_skips:n{1}}%
   \DeclareRobustCommand\tiny{\resp_set_font_size:Nn\tiny{-3}}
   \DeclareRobustCommand\scriptsize{\resp_set_font_size:Nn\scriptsize{-2}}
@@ -190,6 +186,14 @@
   \DeclareRobustCommand\LARGE{\resp_set_font_size:Nn\LARGE{3}}
   \DeclareRobustCommand\huge{\resp_set_font_size:Nn\huge{4}}
   \DeclareRobustCommand\Huge{\resp_set_font_size:Nn\Huge{5}}
+}
+
+
+% #1 line spacing ratio 
+% #2 number or characters that should fit to a text line
+\NewDocumentCommand\setsizes{O{\l_resp_lineheight_ratio} m}{%
+  \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
+  \resp_declare_font_sizes%
   \normalsize%
   \if@twocolumn
     \parindent=\resp_font_size
