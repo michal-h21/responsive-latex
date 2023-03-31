@@ -192,7 +192,12 @@
 % #1 line spacing ratio 
 % #2 number or characters that should fit to a text line
 \NewDocumentCommand\setsizes{O{\l_resp_lineheight_ratio} m}{%
-  \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{#2}}%
+  \ifx\relax#2\relax
+    \int_set_eq:NN\l_tmpa_int\l_resp_charlines_int
+  \else
+    \int_set:Nn\l_tmpa_int{#2}
+  \fi
+  \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_tmpa_int}}%
   \resp_declare_font_sizes%
   \normalsize%
   \if@twocolumn
