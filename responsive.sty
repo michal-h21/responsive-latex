@@ -300,10 +300,14 @@
   }
 }
 
+\DeclareMediaQueryMatcher{twocolumn}{%
+  \if@twocolumn\mediaquerytrue\fi
+}
+
 
 % find if handler exists for the passed media query type and execute it
 \cs_set:Npn \l_responsive_handle_media_query#1#2{
-  \cs_if_exist_use:cTF{responsive_query_test:#1}{{#2}}{}
+  \cs_if_exist_use:cTF{responsive_query_test:#1}{{#2}}{\PackageWarning{responsive}{Unknown~media~query~test:~#1=#2}}
 }
 
 % #1 - media query
