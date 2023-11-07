@@ -162,7 +162,14 @@ Occasionally, you can run into issues caused by the change of font sizes. \LaTeX
 depending on the base font size. We try to recalculate them according to the new font size, but you can still
 experience some issues, described in following subsections.
 
-\subsection{Error Messages From the Output Routine }
+\subsection{Underfull \verb|\vbox| warning}
+
+Ocasionally, you can get the following warning:
+
+\begin{verbatim}
+Underfull \vbox (badness 6412) has occurred while \output is active []
+\end{verbatim}
+
 
 this trick should fix vbox errors in the output routine. 
 we calculate exact box for the font size, but often,
