@@ -29,14 +29,15 @@ idxgroup = Package keys,
       \printsize{LARGE}
       \printsize{Large}
       \printsize{large}
+      \hrule
       \printsize{normalsize}
+      \hrule
       \printsize{small}
       \printsize{footnotesize}
     \end{minipage}
   }
     \ifx\relax#2\relax Default parameters\else\texttt{#2}\fi\hfill\null
 }
-
 \makeindex
 
 \begin{document}
@@ -54,42 +55,204 @@ from smartphones or e-ink readers to printed A4.
 \end{abstract}
 \tableofcontents
 
+\section{Introduction}
+
+This package aims to facilitate the creation of documents for multiple output
+formats, such as various page sizes, e-book readers, or even mobile phones.
+
+One of the issues that needs to be addressed is setting the correct font size
+for readability. The default font size in LaTeX is 10 points, regardless of the
+page size. This is an appropriate font size for A5 format pages. For A4 format,
+the font size should be larger, while it may be smaller for smaller displays of
+e-readers and mobile phones. Similarly, we can adjust the line spacing, which
+also affects text readability depending on the font size and page size.
+
+Web browsers face a similar problem as they must display text on both large PC
+monitors and smaller displays of laptops, tablets, and mobile phones. The
+solution they use is called \textit{responsive design}.
+
+Responsive design is a method of web design that allows flexible and dynamic
+adaptation of the appearance and layout of page content to different display
+devices. One of the key elements of responsive design is a flexible structure
+that enables adjusting the size of elements on the page to the display device.
+
+Another important element is media queries. These allow defining rules based on
+the properties of the display device, such as screen width and height or output
+type (paper, display). Thanks to these rules, the same page code can be
+well-displayed on both large monitors and mobile devices or when printing. 
+
+The Responsive package is inspired by these principles. Its main function
+is to set the font size based on the page size and the approximate number of
+characters that should fit on the page (see figure~\ref{fig:example}). It also adjusts the typographic scale
+(influencing font size, for example, in headings or footnotes), line height,
+and supports a simple version of media queries.
+
+
 \section{Features}
 
-\begin{figure}[htp]
-  \null\hfill\begin{minipage}{150pt}
-
-    % \ResponsiveSetup{#2g}
-    \setsizes[32]{56}
-
-    
-    {\Huge\par\noindent Huge text\par}
-
-    \lipsum[1]
-  \end{minipage}\hfill\null
-  \caption{Example of responsive typography on a smaller page}
-\end{figure}
 
 \subsection{Fitting Font Size to the Page Size}
 
+Regardless of the width of the page, there is a certain range of the number of
+characters that should be displayed on average per line of text to ensure good
+readability. With a larger number of characters, the reader may have difficulty
+quickly moving to the next line, while shorter lines may lead to skipping
+lines. 
+
+The Responsive package automatically sets the width of the text to a chosen number of characters.
+Figure~\ref{fig:example} shows a difference in the font size in two
+different text widths.
+
+
+\begin{figure}[htbp]
+  \caption{Example of changing font size based on the width of the text block:}\label{fig:example}
+\begin{subfigure}[t]{0.45\textwidth}
+\fbox{%
+\begin{minipage}{4cm}
+\ResponsiveSetup{}
+\setsizes{}
+
+\lipsum[1]
+
+\end{minipage}}
+\caption{Text width 4cm}
+\end{subfigure}
+% \hfill
+\begin{subfigure}[t]{0.45\textwidth}
+\fbox{%
+\begin{minipage}{6cm}
+\ResponsiveSetup{}
+\setsizes{}
+
+% \lipsum[1]
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit,
+vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida
+mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a,
+magna. Donec vehicula augue eu neque. Pellentesque habitant morbi
+tristique senectus et netus et malesuada fames ac turpis egestas. Mauris
+ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna
+fringilla ultrices. Phasellus eu tellus sit amet tortor gravida placerat. Integer
+sapien est, iaculis in, pretium quis, viverra ac, nunc.
+
+\end{minipage}}
+\caption{Text width 6cm}
+\end{subfigure}
+\end{figure}
+
+
 \subsection{Typographic Scale}
 
-A typographic scale is a system of organizing type sizes in a harmonious manner, like on musical scale. 
-% https://spencermortensen.com/articles/typographic-scale/
+The typographic scale is a set of predetermined font sizes used to establish a
+consistent visual style for a document or website. These sizes are typically
+expressed in point units and progressively increase or decrease by a specific
+interval along the scale.
+
+A typographic scale may include sizes for headings, footnotes, and body text.
+Proper use of a typographic scale helps create a visual hierarchy that enhances
+the readability and aesthetic appeal of the text. 
+
+In \LaTeX, the typographic scale is accessible through commands such as \verb|\large|,
+\verb|\huge|, or \verb|\scriptsize|. Each of these commands is one interval
+away from the previous size. The default scale in the Responsive package
+closely aligns with the scale used in \LaTeX\ is referred to as tetratonic.
+The package also offers additional scales described in the
+article, such as the golden scale based on the golden ratio. 
+See Figure~\ref{fig:scale} for differences between the default scale and scale based on the 
+golden ratio.
 
 
+\begin{figure}[htbp]
+  \caption{Sample of Typographic Scales (the default font size is highlighted with lines)}\label{fig:scale}
+  \begin{subfigure}[b]{0.45\textwidth}
+\fbox{%
+\begin{minipage}{5cm}
+\setsizes{45}
 
 \showscale{}
-\showscale{scale=heptatonic}
-\showscale{scale=tritonic}
+
+\end{minipage}}
+\caption{Default scale}
+\end{subfigure}
+\begin{subfigure}[b]{0.45\textwidth}
+% \begin{verbatim}
+% \ResponsiveSetup{scale=golden}
+% \end{verbatim}
+\fbox{%
+\begin{minipage}{5cm}
+% \ResponsiveSetup{scale=golden}
+\setsizes{45}
+
 \showscale{scale=golden}
-\showscale{scale=none,ratio=1.3,number=2}
+
+\end{minipage}}
+\caption{Golden ratio scale}
+\end{subfigure}
+\end{figure}
+% % https://spencermortensen.com/articles/typographic-scale/
+
+
+
+% \showscale{}
+% \showscale{scale=heptatonic}
+% \showscale{scale=tritonic}
+% \showscale{scale=golden}
+% \showscale{scale=none,ratio=1.3,number=2}
 
 \subsection{Line height}
+
+In the default settings of \LaTeX, the line spacing is set to the font size
+multiplied by a factor of 1.2. For different fonts and page sizes, a different
+line spacing may be appropriate. Similarly, distinct values may be suitable for
+the printed and electronic versions of the document. 
+
+The Responsive package provides the option \verb|lineratio|, which allows you to change the line spacing
+(Figure~\ref{fig:lineratio}).
+
+\begin{figure}[htbp]
+  \caption{Changing the line spacing by adjusting the value of \texttt{lineratio}.}\label{fig:lineratio}
+  \begin{subfigure}[b]{0.45\textwidth}
+\fbox{%
+\begin{minipage}{5cm}
+\ResponsiveSetup{lineratio=38}
+\setsizes{65}
+
+\lipsum[1]
+
+\end{minipage}}
+\caption{lineratio=38}
+\end{subfigure}
+\begin{subfigure}[b]{0.45\textwidth}
+\fbox{%
+\begin{minipage}{5cm}
+\ResponsiveSetup{lineratio=34}
+\setsizes{65}
+
+\lipsum[1]
+
+\end{minipage}}
+\caption{lineratio=34}
+\end{subfigure}
+\end{figure}
 
 % https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
 
 \subsection{Media Queries}
+
+Media queries are a technique that allows web developers to dynamically adapt
+the appearance and behavior of websites based on various device properties,
+such as screen width and height, device orientation, color support, and more.
+Thanks to these conditions, responsive and flexible websites can be created
+that automatically adjust to different types and sizes of devices on which they
+are displayed.
+
+How can this technique be useful for \LaTeX\ package authors? They could, for
+example, set the font size, line spacing, and other elements for specific page
+dimensions. Once the user chooses the page size based on the device size for
+which they want to compile the document, these elements are automatically
+adjusted. For instance, a package author could define that if the width of the
+text block is smaller than a certain dimension, fewer characters will be
+displayed on each line compared to longer lines (Figure~\ref{fig:mediaquery}). 
+
 
 
 
@@ -100,17 +263,19 @@ A typographic scale is a system of organizing type sizes in a harmonious manner,
   \lipsum[1]
 }
 
-\begin{figure}
+\begin{figure}[htbp]
   % \centering
   % \begin{subcaptionblock}{0.25\textwidth}
+  \caption{Change number of characters and line spacing depending on the text width using Media queries}\label{fig:mediaquery}
   \begin{subcaptiongroup}
     \begin{minipage}{3.9cm}
       { \mdtest
         
       }
-    \caption{textwidth=3.9cm}
+    \caption{\texttt{\textbackslash textwidth}=3.9cm}
     \end{minipage}
-    \hspace{2em}
+    \hfill
+    % \hspace{2em}
     \begin{minipage}{6cm}
       { \mdtest 
 
@@ -119,7 +284,6 @@ A typographic scale is a system of organizing type sizes in a harmonious manner,
     \end{minipage}
   \end{subcaptiongroup}
   % \end{subcaptionblock}
-  \caption{Example of media query usage.}
 \end{figure}
 
 
@@ -162,7 +326,7 @@ Occasionally, you can run into issues caused by the change of font sizes. \LaTeX
 depending on the base font size. We try to recalculate them according to the new font size, but you can still
 experience some issues, described in following subsections.
 
-\subsection{Underfull \verb|\vbox| warning}
+\subsection{Underfull \texttt{\textbackslash vbox} warning}
 
 Ocasionally, you can get the following warning:
 
