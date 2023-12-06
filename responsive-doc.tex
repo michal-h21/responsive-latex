@@ -266,6 +266,10 @@ The media query used for this figure looks like this:
 {\ResponsiveSetup{lineratio=34}\setsizes{60}}
 \end{verbatim}
 
+Defines that if the width of the text is smaller than or equal to 4 cm, a
+smaller number of characters will be displayed per line to prevent the font
+from being too small and difficult to read. Additionally, a smaller line
+spacing will be applied.
 
 
 
@@ -281,11 +285,11 @@ The media query used for this figure looks like this:
   % \begin{subcaptionblock}{0.25\textwidth}
   \caption{Change number of characters and line spacing depending on the text width using Media queries}\label{fig:mediaquery}
   \begin{subcaptiongroup}
-    \begin{minipage}{3.9cm}
+    \begin{minipage}{4cm}
       { \mdtest
         
       }
-    \caption{Text width of 3.9\,cm with 45 characters}
+    \caption{Text width of 4\,cm with 45 characters}
     \end{minipage}
     \hfill
     % \hspace{2em}
