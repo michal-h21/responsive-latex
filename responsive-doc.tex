@@ -7,6 +7,9 @@
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{microtype}
+\usepackage{longtable}
+\newenvironment{changelog}{\longtable{@{} l p{30em}}}{\endlongtable}
+\newcommand\change[2]{#1 & #2\\}
 \setmainfont{EB Garamond}
 \newcommand\StartDescribe[1]{%
   \par\medskip\noindent\DescribeMacro#1
@@ -396,7 +399,15 @@ to an irregular number of lines on pages.
 \def\@textbottom{\vskip \z@ \@plus \resp_font_size \@minus \resp_font_size}
 \ExplSyntaxOff
 \end{verbatim}
+
+\section{Changes}
+
+\begin{changelog}
+  \change{2023-12-06}{ChangeLog started}
+\end{changelog}
 % \section{Examples}
 % \PrintIndex
+
+
 
 \end{document}
