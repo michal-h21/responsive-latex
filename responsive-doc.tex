@@ -8,6 +8,11 @@
 \usepackage{graphicx}
 \usepackage{microtype}
 \setmainfont{EB Garamond}
+\newcommand\StartDescribe[1]{%
+  \par\medskip\noindent\DescribeMacro#1
+}
+%\setmonofont{IBM Plex Mono}[Scale=MatchLowercase]
+\setmonofont{Inconsolatazi4-Regular.otf}[Scale=MatchLowercase]
 \usepackage{lipsum}
 \title{The Responsive Package}
 \author{Michal Hoftich\thanks{\url{michal.h21@gmail.com}}}
@@ -115,7 +120,7 @@ different text widths.
 \lipsum[1]
 
 \end{minipage}}
-\caption{Text width 4cm}
+\caption{Text width 4\,cm}
 \end{subfigure}
 % \hfill
 \begin{subfigure}[t]{0.45\textwidth}
@@ -135,7 +140,7 @@ fringilla ultrices. Phasellus eu tellus sit amet tortor gravida placerat. Intege
 sapien est, iaculis in, pretium quis, viverra ac, nunc.
 
 \end{minipage}}
-\caption{Text width 6cm}
+\caption{Text width 6\,cm}
 \end{subfigure}
 \end{figure}
 
@@ -253,6 +258,14 @@ adjusted. For instance, a package author could define that if the width of the
 text block is smaller than a certain dimension, fewer characters will be
 displayed on each line compared to longer lines (Figure~\ref{fig:mediaquery}). 
 
+The media query used for this figure looks like this:
+
+\begin{verbatim}
+\mediaquery{max-textwidth=4cm}
+{\ResponsiveSetup{lineratio=38}\setsizes{45}}
+{\ResponsiveSetup{lineratio=34}\setsizes{60}}
+\end{verbatim}
+
 
 
 
@@ -272,7 +285,7 @@ displayed on each line compared to longer lines (Figure~\ref{fig:mediaquery}).
       { \mdtest
         
       }
-    \caption{Text width of 3.9cm with 45 characters}
+    \caption{Text width of 3.9\,cm with 45 characters}
     \end{minipage}
     \hfill
     % \hspace{2em}
@@ -280,7 +293,7 @@ displayed on each line compared to longer lines (Figure~\ref{fig:mediaquery}).
       { \mdtest 
 
       }
-      \caption{Text width of 6cm with 60 characters}
+      \caption{Text width of 6\,cm with 60 characters}
     \end{minipage}
   \end{subcaptiongroup}
   % \end{subcaptionblock}
@@ -290,35 +303,67 @@ displayed on each line compared to longer lines (Figure~\ref{fig:mediaquery}).
 
 \section{Package Options}
 
-The following options can be passed as package uptions used in \cmd{\usepackage}, 
+The following options can be passed as package options used in \cmd{\usepackage}, 
 or later in the document using the \cmd{\ResponsiveSetup} command.
 
 \medskip
 
-\noindent \DescribeKey{characters} Set aproximate number of characters that should fit to a text line.
+\noindent \DescribeKey{characters} Approximate number of characters that should fit to a text line. Default value is 66.
 
-\noindent \DescribeKey{noautomatic}  Disable automatic setting of font sizes in the document. You can set them 
-later using the \cmd{\setsizes} command.
+\noindent \DescribeKey{noautomatic}  Disable automatic setting of font sizes, line spacing and typographic scale in the document. You can set them 
+later using the \cmd{\setsizes} and \cmd{\ResponsiveSetup} commands.
 
-\noindent \DescribeKey{scale} Select typographic scale
+\noindent \DescribeKey{scale} Select named typographic scale. Default scale is
+\texttt{tetratonic}, which is the most similar to the default scale used by
+\LaTeX.
 
-\noindent \DescribeKey{number} Number of steps before the scale reaches the next multiplication point.
+\noindent \DescribeKey{number} The number of steps during which the text size is multiplied by the amount specified in the \texttt{ratio} option.
 
-\noindent \DescribeKey{ratio} 
+\noindent \DescribeKey{ratio} The amount by which the font size will increase over a given number of steps.
 
-\noindent \DescribeKey{lineratio} 
+\noindent \DescribeKey{lineratio} The ratio used in calculating the line spacing. Default value is 34.
 
-\noindent \DescribeKey{boxwidth} Width of line that is used for font size calculations in the \cmd{\setsizes} command.
+\noindent \DescribeKey{boxwidth} Width of line that is used for font size calculations in the \cmd{\setsizes} command. Default value is \cmd{\textwidth}.
 
 
 
 
 \section{Commands}
 
-\DescribeMacro\setsizes
-\cmd\setsizes\oarg{xxx}\marg{characters per lines}
+\StartDescribe\ResponsiveSetup
+\cmd\ResponsiveSetup\marg{options}
 
-% \PrintIndex
+\noindent It allows you to reset the package options later in the document.
+
+\StartDescribe\setsizes
+\cmd\setsizes\oarg{line height ratio}\marg{number of characters per line}
+
+\noindent It sets the text size so that the specified average number of
+characters fit on a line. If you do not provide the number of characters, the
+package option \texttt{characters} will be used.
+
+
+\StartDescribe\fonttobox
+\cmd\fonttobox\oarg{line height ratio}\marg{text width}\marg{text}
+
+\noindent Set the text size so that the specified text in the second parameter has
+the specified size in the first parameter. Optionally, you can set the line
+height ratio.
+
+\StartDescribe\mediaquery
+\cmd\mediaquery\marg{media query test}\marg{true code}\marg{false code}
+
+\noindent
+It tests the document's properties using media queries and executes code based on the test results.
+The code can typically use \cmd\ResponsiveSetup, but you can also execute any other commands.
+
+\StartDescribe\DeclareMediaQueryMatcher
+\cmd\DeclareMediaQueryMatcher\marg{test name}\marg{\LaTeX\ 3 boolean query test}
+
+\noindent Declares a new test for a media query. The tests can use LaTeX 3 boolean tests,
+and in case of a positive result, it must execute the command 
+\cmd\mediaquerytrue.
+
 
 \section{Troubleshooting}
 
@@ -328,21 +373,26 @@ experience some issues, described in following subsections.
 
 \subsection{Underfull \texttt{\textbackslash vbox} warning}
 
-Ocasionally, you can get the following warning:
+Occasionally, you can get the following warning:
 
 \begin{verbatim}
 Underfull \vbox (badness 6412) has occurred while \output is active []
 \end{verbatim}
 
-
-this trick should fix vbox errors in the output routine. 
-we calculate exact box for the font size, but often,
+We calculate the page height that suits  for the font size, but often,
 we would get error when a bigger font is used on the page,
 for example in chapters
 
-There are several 
-  % source: https://tex.stackexchange.com/a/62318/2891
-  \def\@textbottom{\vskip \z@ \@plus \resp_font_size \@minus \resp_font_size}
-\section{Examples}
+This trick should fix \cmd\vbox errors in the output routine, but it can lead 
+to an irregular number of lines on pages.
+
+
+\begin{verbatim}
+\ExplSyntaxOn
+\def\@textbottom{\vskip \z@ \@plus \resp_font_size \@minus \resp_font_size}
+\ExplSyntaxOff
+\end{verbatim}
+% \section{Examples}
+% \PrintIndex
 
 \end{document}
