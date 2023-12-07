@@ -1,6 +1,7 @@
 \documentclass{ltxdoc}
 
-\usepackage[noautomatic]{responsive}
+% \usepackage[noautomatic]{responsive}
+\usepackage[]{responsive}
 \usepackage{linebreaker}
 \usepackage{fontspec}
 \usepackage{caption}
@@ -11,6 +12,7 @@
 \newenvironment{changelog}{\longtable{@{} l p{30em}}}{\endlongtable}
 \newcommand\change[2]{#1 & #2\\}
 \setmainfont{EB Garamond}
+
 \newcommand\StartDescribe[1]{%
   \par\medskip\noindent\DescribeMacro#1
 }
@@ -213,8 +215,8 @@ multiplied by a factor of 1.2. For different fonts and page sizes, a different
 line spacing may be appropriate. Similarly, distinct values may be suitable for
 the printed and electronic versions of the document. 
 
-The Responsive package provides the option \verb|lineratio|, which allows you to change the line spacing
-(Figure~\ref{fig:lineratio}).
+The Responsive package provides two options which allows you to change the line spacing
+(Figure~\ref{fig:lineratio}). First is the  \verb|lineratio| option, 
 
 \begin{figure}[htbp]
   \caption{Changing the line spacing by adjusting the value of \texttt{lineratio}.}\label{fig:lineratio}
@@ -330,6 +332,8 @@ later using the \cmd{\setsizes} and \cmd{\ResponsiveSetup} commands.
 
 \noindent \DescribeKey{lineratio} The ratio used in calculating the line spacing. Default value is 34.
 
+\noindent \DescribeKey{lineheight} Calculate line spacing by a fixed ratio, similarly to the CSS \texttt{lineheight} property.
+
 \noindent \DescribeKey{boxwidth} Width of line that is used for font size calculations in the \cmd{\setsizes} command. Default value is \cmd{\textwidth}.
 
 
@@ -340,7 +344,8 @@ later using the \cmd{\setsizes} and \cmd{\ResponsiveSetup} commands.
 \StartDescribe\ResponsiveSetup
 \cmd\ResponsiveSetup\marg{options}
 
-\noindent It allows you to reset the package options later in the document.
+\noindent It allows you to reset the package options later in the document. You
+need to call the \cmd{\setsizes} command to reset font sizes explicitly.
 
 \StartDescribe\setsizes
 \cmd\setsizes\oarg{line height ratio}\marg{number of characters per line}
@@ -390,7 +395,7 @@ We calculate the page height that suits  for the font size, but often,
 we would get error when a bigger font is used on the page,
 for example in chapters
 
-This trick should fix \cmd\vbox errors in the output routine, but it can lead 
+This trick should fix \cmd{\vbox} errors in the output routine, but it can lead 
 to an irregular number of lines on pages.
 
 
@@ -403,10 +408,13 @@ to an irregular number of lines on pages.
 \section{Changes}
 
 \begin{changelog}
-  \change{2023-12-06}{ChangeLog started}
+  \change{2023-12-07}{Added the \texttt{lineheight} property.}
+  \change{}{Use floating point numbers for the lineratio.}
+  \change{2023-12-06}{ChangeLog started.}
 \end{changelog}
 % \section{Examples}
 % \PrintIndex
+
 
 
 
