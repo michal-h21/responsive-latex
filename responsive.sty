@@ -22,6 +22,14 @@
 
 % alternatively, we can use lineheight
 \fp_new:N\l_resp_lineheight
+
+% this is used in line spacing, the idea is to make larger spacing
+% for larger font sizes, but I need to find a better calculation method,
+% as it doesn't work well for now
+\fp_new:N\l_resp_lineheight_multiplier
+\fp_set:Nn\l_resp_lineheight_multiplier{1}
+
+
 % type of typograhic scale
 \tl_new:N\l_resp_scaletype_str
 \tl_set:Nn\l_resp_scaletype_str {tetratonic}
@@ -157,7 +165,7 @@
 
 % #1 font command, #2 note number
 \cs_set:Npn\resp_set_font_size:Nn #1#2{%
-  \@setfontsize#1{\resp_multiply_note:nnn\resp_font_size{#2}{1}}{\resp_multiply_note:nnn\resp_line_skip{#2}{1}}
+  \@setfontsize#1{\resp_multiply_note:nnn\resp_font_size{#2}{1}}{\resp_multiply_note:nnn\resp_line_skip{#2}{\l_resp_lineheight_multiplier}}
 }
 
 % recalculate \textheight and \headheight with the changed font size
@@ -209,7 +217,6 @@
     % divide "x" size by desired line spacing (font size * lineheight)
     % lineheight should be ratio, for example 1.2, which is used by default in LaTeX
     \fp_set:Nn\l_resp_lineheight_ratio{\fp_eval:n{(\dim_to_fp:n{1ex} / (\f@size * \l_resp_lineheight))*100}}
-    \typeout{*************** what~is~lineheight?~\fp_eval:n{\l_resp_lineheight_ratio}}
   }
   \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_tmpa_int}}%
   \resp_declare_font_sizes%
