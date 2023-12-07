@@ -16,8 +16,9 @@
 % line height ratio
 % see https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
 % for more details
-\int_new:N\l_resp_lineheight_ratio
-\l_resp_lineheight_ratio = 34
+\fp_new:N\l_resp_lineheight_ratio
+% this value corresponds to lineheight 1.2
+\fp_set:Nn\l_resp_lineheight_ratio{33.33333}
 % type of typograhic scale
 \tl_new:N\l_resp_scaletype_str
 \tl_set:Nn\l_resp_scaletype_str {tetratonic}
@@ -38,7 +39,7 @@
   number .fp_set:N = \l_resp_scalen_fp,
   ratio .fp_set:N =\l_resp_scaler_fp,
   scale .tl_set:N = \l_resp_scaletype_str,
-  lineratio .int_set:N = \l_resp_lineheight_ratio,
+  lineratio .fp_set:N = \l_resp_lineheight_ratio,
   boxwidth .tl_set:N = \l_resp_boxwidth,
 }
 
