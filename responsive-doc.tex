@@ -11,7 +11,7 @@
 \usepackage{longtable}
 \newenvironment{changelog}{\longtable{@{} l p{30em}}}{\endlongtable}
 \newcommand\change[2]{#1 & #2\\}
-\setmainfont{EB Garamond}
+\setmainfont{EB Garamond}[Numbers=OldStyle]
 
 \newcommand\StartDescribe[1]{%
   \par\medskip\noindent\DescribeMacro#1
@@ -61,7 +61,7 @@ design elements.
 This package tries to achieve similar result with \LaTeX. The main aim is to 
 support output of multiple editions of one document with 
 readable font sizes regardless of the physical size of the produced PDF,
-from smartphones or e-ink readers to printed A4.
+from smartphones or e-ink readers to printed A4 pages.
 \end{abstract}
 \tableofcontents
 
@@ -330,7 +330,7 @@ later using the \cmd{\setsizes} and \cmd{\ResponsiveSetup} commands.
 
 \noindent \DescribeKey{ratio} The amount by which the font size will increase over a given number of steps.
 
-\noindent \DescribeKey{lineratio} The ratio used in calculating the line spacing. Default value is 34.
+\noindent \DescribeKey{lineratio} The ratio used in calculating the line spacing. Default value is 33.3333, which should produce similar line spacing as the default \LaTeX\ setting.
 
 \noindent \DescribeKey{lineheight} Calculate line spacing by a fixed ratio, similarly to the CSS \texttt{lineheight} property.
 
@@ -345,7 +345,8 @@ later using the \cmd{\setsizes} and \cmd{\ResponsiveSetup} commands.
 \cmd\ResponsiveSetup\marg{options}
 
 \noindent It allows you to reset the package options later in the document. You
-need to call the \cmd{\setsizes} command to reset font sizes explicitly.
+need to call the \cmd{\setsizes} command to reset font sizes explicitly if you use this command
+outside of the document preamble, or when using the \texttt{noautomatic} option.
 
 \StartDescribe\setsizes
 \cmd\setsizes\oarg{line height ratio}\marg{number of characters per line}
