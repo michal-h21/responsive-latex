@@ -9,6 +9,9 @@
 \usepackage{graphicx}
 \usepackage{microtype}
 \usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[style=iso-authoryear]{biblatex}
+\addbibresource{responsive-doc.bib}
 \newenvironment{changelog}{\longtable{@{} l p{30em}}}{\endlongtable}
 \newcommand\change[2]{#1 & #2\\}
 \setmainfont{EB Garamond}[Numbers=OldStyle]
@@ -170,6 +173,28 @@ article, such as the golden scale based on the golden ratio.
 See Figure~\ref{fig:scale} for differences between the default scale and scale based on the 
 golden ratio.
 
+The Responsive package includes several predefined typographic scales, but you
+can also define your own. All scales are defined using the options
+\verb|number| and \verb|ratio|, specifying how many steps (\verb|number|) the
+font size increases by the size of \verb|ratio|. For example scale with \verb|number| of 2
+and \verb|ratio| of 5, will double the font size over 5 steps.
+Table~\ref{tbl:scales} lists all predefined scales.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{l l l}
+    \toprule
+    name & number & ratio\\
+    \midrule
+    heptatonic & 7 & 2\\
+    pentatonic & 5 & 2\\
+    tetratonic & 4 & 2\\
+    tritonic & 3 & 2\\
+    golden & 2 & 1.618\\\bottomrule
+  \end{tabular}
+  \caption{Predefined typographic scales}\label{tbl:scales}
+\end{table}
+
 
 \begin{figure}[htbp]
   \caption{Sample of Typographic Scales (the default font size is highlighted with lines)}\label{fig:scale}
@@ -216,7 +241,24 @@ line spacing may be appropriate. Similarly, distinct values may be suitable for
 the printed and electronic versions of the document. 
 
 The Responsive package provides two options which allows you to change the line spacing
-(Figure~\ref{fig:lineratio}). First is the  \verb|lineratio| option, 
+(Figure~\ref{fig:lineratio}). 
+
+First is the  \verb|lineratio| option, which bases the line height 
+on the ratio between x-height of the current font and the desired height. 
+I've found this method in article by Edoardo Cavazza in the \textit{Smashing Magazine}~\parencite{cavazza}.
+The value of the \verb|lineratio| option determines what percentage of the total line
+height is the \verb|x-height|. The higher this value, the lower the line will be. For
+different fonts, the same ratio may lead to different line heights because each
+font has a different \verb|x-height| value. The appropriate lineratio size needs to be
+determined experimentally. The default value should roughly correspond to a
+line height of 1.2, the default in \LaTeX.
+
+Another option is \verb|lineheight|, which
+is similar to the CSS property \verb|line-height|. Using it, we can choose the
+line height as a multiple of the font size.
+
+
+
 
 \begin{figure}[htbp]
   \caption{Changing the line spacing by adjusting the value of \texttt{lineratio}.}\label{fig:lineratio}
@@ -394,8 +436,10 @@ Underfull \vbox (badness 6412) has occurred while \output is active []
 
 We calculate the page height that suits  for the font size, but often,
 we would get error when a bigger font is used on the page,
-for example in chapters
-
+for example in chapters. When you set font sizes in the document preamble,
+text height should be changed automatically. If you reset font sizes later in the
+document, you need to use the \cmd{\fixtextheight} command. It should help in
+most cases. If not, you can try the following hack.
 This trick should fix \cmd{\vbox} errors in the output routine, but it can lead 
 to an irregular number of lines on pages.
 
@@ -415,6 +459,9 @@ to an irregular number of lines on pages.
 \end{changelog}
 % \section{Examples}
 % \PrintIndex
+
+\printbibliography
+
 
 
 
