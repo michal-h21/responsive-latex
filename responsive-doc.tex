@@ -3,7 +3,6 @@
 % \usepackage[noautomatic]{responsive}
 \usepackage[]{responsive}
 \usepackage{linebreaker}
-\usepackage{fontspec}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -14,13 +13,19 @@
 \addbibresource{responsive-doc.bib}
 \newenvironment{changelog}{\longtable{@{} l p{30em}}}{\endlongtable}
 \newcommand\change[2]{#1 & #2\\}
+\ifdefined\HCode
+  % I want to convert parts of the document to images,
+  % so I need to use Type 1 fonts for the correct conversion with Dvisvgm
+  \usepackage{lmodern}
+\else
+\usepackage{fontspec}
 \setmainfont{EB Garamond}[Numbers=OldStyle]
+\setmonofont{Inconsolatazi4-Regular.otf}[Scale=MatchLowercase]
+\fi
 
 \newcommand\StartDescribe[1]{%
   \par\medskip\noindent\DescribeMacro#1
 }
-%\setmonofont{IBM Plex Mono}[Scale=MatchLowercase]
-\setmonofont{Inconsolatazi4-Regular.otf}[Scale=MatchLowercase]
 \usepackage{lipsum}
 \title{The Responsive Package}
 \author{Michal Hoftich\thanks{\url{michal.h21@gmail.com}}}
@@ -66,6 +71,9 @@ support output of multiple editions of one document with
 readable font sizes regardless of the physical size of the produced PDF,
 from smartphones or e-ink readers to printed A4 pages.
 \end{abstract}
+
+\clearpage
+
 \tableofcontents
 
 \section{Introduction}
@@ -166,8 +174,13 @@ the readability and aesthetic appeal of the text.
 
 In \LaTeX, the typographic scale is accessible through commands such as \verb|\large|,
 \verb|\huge|, or \verb|\scriptsize|. Each of these commands is one interval
-away from the previous size. The default scale in the Responsive package
-closely aligns with the scale used in \LaTeX\ is referred to as tetratonic.
+away from the previous size. 
+
+I drew inspiration from Spencer Mortensen's article (\citeyear{mortensen}), which defines several
+different typographic scales and provides a method for easily creating
+additional scales.
+The default scale in the Responsive package,
+which closely aligns with the scale used in \LaTeX, is referred to as \verb|tetratonic|.
 The package also offers additional scales described in the
 article, such as the golden scale based on the golden ratio. 
 See Figure~\ref{fig:scale} for differences between the default scale and scale based on the 
@@ -245,7 +258,7 @@ The Responsive package provides two options which allows you to change the line 
 
 First is the  \verb|lineratio| option, which bases the line height 
 on the ratio between x-height of the current font and the desired height. 
-I've found this method in article by Edoardo Cavazza in the \textit{Smashing Magazine}~\parencite{cavazza}.
+I've found this method in article by Edoardo Cavazza in the \textit{Smashing Magazine}~(\citeyear{cavazza}).
 The value of the \verb|lineratio| option determines what percentage of the total line
 height is the \verb|x-height|. The higher this value, the lower the line will be. For
 different fonts, the same ratio may lead to different line heights because each
@@ -310,10 +323,10 @@ The media query used for this figure looks like this:
 \begin{verbatim}
 \mediaquery{max-textwidth=4cm}
 {\ResponsiveSetup{lineratio=38}\setsizes{45}}
-{\ResponsiveSetup{lineratio=34}\setsizes{60}}
+\ResponsiveSetup{lineratio=34}\setsizes{60}}
 \end{verbatim}
 
-Defines that if the width of the text is smaller than or equal to 4 cm, a
+This media query defines that if the width of the text is smaller than or equal to 4 cm, a
 smaller number of characters will be displayed per line to prevent the font
 from being too small and difficult to read. Additionally, a smaller line
 spacing will be applied.
@@ -331,23 +344,28 @@ spacing will be applied.
   % \centering
   % \begin{subcaptionblock}{0.25\textwidth}
   \caption{Change number of characters and line spacing depending on the text width using Media queries}\label{fig:mediaquery}
-  \begin{subcaptiongroup}
+  % \begin{subcaptiongroup}
+  \begin{subfigure}[t]{0.40\textwidth}
+    \centering
     \begin{minipage}{4cm}
       { \mdtest
         
       }
-    \caption{Text width of 4\,cm with 45 characters}
     \end{minipage}
-    \hfill
+    \caption{Text width of 4\,cm with 45 characters}
+  \end{subfigure}
+  \hfill
     % \hspace{2em}
+  \begin{subfigure}[t]{0.55\textwidth}
+    \centering
     \begin{minipage}{6cm}
       { \mdtest 
 
       }
-      \caption{Text width of 6\,cm with 60 characters}
     \end{minipage}
-  \end{subcaptiongroup}
-  % \end{subcaptionblock}
+  \caption{Text width of 6\,cm with 60 characters}
+  \end{subfigure}
+  
 \end{figure}
 
 
@@ -418,6 +436,13 @@ The code can typically use \cmd\ResponsiveSetup, but you can also execute any ot
 \noindent Declares a new test for a media query. The tests can use LaTeX 3 boolean tests,
 and in case of a positive result, it must execute the command 
 \cmd\mediaquerytrue.
+
+\StartDescribe\fixtextheight
+\cmd\fixtextheight
+
+\noindent It adjusts the page height, header, and footer to prevent underflow
+\cmd{\vbox} warnings in the output routine.
+
 
 
 \section{Troubleshooting}
