@@ -1,4 +1,16 @@
 \documentclass{ltxdoc}
+\newcommand\authormail[1]{\footnote{\textless\url{#1}\textgreater}}
+\ifdefined\HCode
+  \renewcommand\authormail[1]{\space\textless\Link[#1]{}{}#1\EndLink\textgreater}
+\fi
+
+\ifdefined\gitdate\else
+  \def\gitdate{\today}
+  \def\version{devel}
+\fi
+
+
+
 
 % \usepackage[noautomatic]{responsive}
 \usepackage[]{responsive}
@@ -28,7 +40,7 @@
 }
 \usepackage{lipsum}
 \title{The Responsive Package}
-\author{Michal Hoftich\thanks{\url{michal.h21@gmail.com}}}
+\author{Michal Hoftich\authormail{michal.h21@gmail.com}}
 \NewDocElement[macrolike = false ,
 toplevel = false,
 idxtype
