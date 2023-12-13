@@ -15,13 +15,15 @@ build_dest = $(build_dir)/$(pkg_name)
 build_readme = $(build_dest)/README
 readme_ctan = readme-ctan.txt
 
-All: $(doc_pdf) $(doc_html)
-
 ifeq ($(strip $(shell git rev-parse --is-inside-work-tree 2>/dev/null)),true)
 	VERSION:= $(shell git --no-pager describe --abbrev=0 --tags --always )
 	DATE:= $(firstword $(shell git --no-pager show --date=short --format="%ad" --name-only))
 	YEAR:= $(shell date '+%Y')
 endif
+
+REPLACE_VERSION = sed -e "s/{{version}}/${VERSION}/" | sed -e "s/{{year}}/${YEAR}/"
+
+All: $(doc_pdf) $(doc_html)
 
 
 $(doc_pdf): $(pdf_sources)
@@ -31,7 +33,6 @@ $(doc_pdf): $(pdf_sources)
 $(doc_html): $(html_sources)
 	make4ht -c $(tex4ht_cfg) -lm draft -a debug -f html5+dvisvgm_hashes $< "svg,fonts"
 
-REPLACE_VERSION = sed -e "s/{{version}}/${VERSION}/" | sed -e "s/{{year}}/${YEAR}/"
 
 build: $(doc_pdf)
 	@rm -rf $(build_dir)
