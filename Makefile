@@ -15,5 +15,5 @@ $(doc_pdf): $(pdf_sources)
 	lualatex $<
 
 $(doc_html): $(html_sources)
-	make4ht -c $(tex4ht_cfg) -lm draft -a debug -f html5+dvisvgm_hashes $< "svg"
+	make4ht -c $(tex4ht_cfg) -lm draft -a debug -f html5+dvisvgm_hashes $< "svg,fonts"
 
