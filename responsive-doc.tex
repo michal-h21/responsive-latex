@@ -11,7 +11,6 @@
 
 
 
-
 % \usepackage[noautomatic]{responsive}
 \usepackage[]{responsive}
 \usepackage{linebreaker}
@@ -140,6 +139,7 @@ different text widths.
 \begin{figure}[htbp]
   \caption{Example of changing font size based on the width of the text block:}\label{fig:example}
 \begin{subfigure}[t]{0.45\textwidth}
+  \centering
 \fbox{%
 \begin{minipage}{4cm}
 \ResponsiveSetup{}
@@ -152,6 +152,7 @@ different text widths.
 \end{subfigure}
 % \hfill
 \begin{subfigure}[t]{0.45\textwidth}
+  \centering
 \fbox{%
 \begin{minipage}{6cm}
 \ResponsiveSetup{}
@@ -380,6 +381,33 @@ spacing will be applied.
   
 \end{figure}
 
+The tests available in media queries are listed in Table~\ref{tbl:mediaqueries}.
+Those expecting dimensional units also have variants using \texttt{min-} and \texttt{max-}, which
+do not test exact values but rather whether the provided value is less than, 
+greater than, or equal to the tested parameter. Tests without these variants evaluate for an exact match.
+The test for a two-column layout is special in that it does not expect any
+testing values. It evaluates to true if the document uses the \texttt{twocolumn} option.
+
+
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    test & possible values \\
+    \midrule
+    textwidth & dimensional unit \\
+    textheight & dimensional unit \\
+    paperwidth & dimensional unit\\
+    paperheight & dimensional unit\\
+    orientation & landscape, portrait\\
+    twocolumn & none \\
+    \bottomrule
+  \end{tabular}
+  \caption{Tests available in media queries}\label{tbl:mediaqueries}
+\end{table}
+
+
 
 
 \section{Package Options}
@@ -490,6 +518,7 @@ to an irregular number of lines on pages.
 \section{Changes}
 
 \begin{changelog}
+  \change{2023-12-13}{Finished documentation.}
   \change{2023-12-07}{Added the \texttt{lineheight} property.}
   \change{}{Use floating point numbers for the lineratio.}
   \change{2023-12-06}{ChangeLog started.}
@@ -497,7 +526,7 @@ to an irregular number of lines on pages.
 % \section{Examples}
 % \PrintIndex
 
-\printbibliography
+\printbibliography[heading=bibintoc]
 
 
 
