@@ -1,0 +1,538 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head> <title></title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+</head><body>
+<!-- l. 74 --><p class='noindent'>
+                                                                    
+
+                                                                    
+</p><!-- l. 74 --><p class='indent'>
+                                                                    
+
+                                                                    
+</p>
+<div class='center'>
+<!-- l. 74 --><p class='noindent'>
+</p><!-- l. 74 --><p class='noindent'><span class='ec-lmr-17x-x-105'>The Responsive Package</span>
+</p>
+<div class='tabular'> <table class='tabular' id='TBL-1'><colgroup id='TBL-1-1g'><col id='TBL-1-1' /></colgroup><tr id='TBL-1-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-1-1-1' style='white-space:nowrap; text-align:center;'> <span class='ec-lmr-12x-x-107'>Michal Hoftich &lt;</span><a href='michal.h21@gmail.com'><span class='ec-lmr-12x-x-107'>michal.h21@gmail.com</span></a><span class='ec-lmr-12x-x-107'>&gt; </span></td></tr></table>                  </div>
+<!-- l. 74 --><p class='noindent'><span class='ec-lmr-12x-x-107'>Version devel, December 15, 2023</span></p></div>
+<section class='abstract' role='doc-abstract'> 
+<h3 class='abstracttitle'>
+<span class='ec-lmbx-9x-x-101'>Abstract</span>
+</h3>   
+      
+<!-- l. 76 --><p class='noindent'><span class='ec-lmr-9x-x-101'>Responsive design aims to display text and other design elements well on
+variety of outputs, including electronic devices or various paper sizes. It
+originated on the Web, where it uses Cascading Style Sheets to change
+design elements.</span>
+</p>     
+<!-- l. 81 --><p class='indent'>    <span class='ec-lmr-9x-x-101'>This package tries to achieve similar result with LaTeX. The main aim
+is to support output of multiple editions of one document with readable font
+sizes regardless of the physical size of the produced PDF, from smartphones
+or e-ink readers to printed A4 pages.</span>
+</p>
+</section>
+                                                                    
+
+                                                                    
+<h3 class='likesectionHead' id='contents'><a id='x1-1000'></a>Contents</h3>
+<div class='tableofcontents'>   
+<span class='sectionToc'>1 <a href='#introduction' id='QQ2-1-2'>Introduction</a></span>
+<br />   <span class='sectionToc'>2 <a href='#features' id='QQ2-1-3'>Features</a></span>
+<br />   <span class='subsectionToc'>2.1 <a href='#fitting-font-size-to-the-page-size' id='QQ2-1-4'>Fitting Font Size to the Page Size</a></span>
+<br />   <span class='subsectionToc'>2.2 <a href='#typographic-scale' id='QQ2-1-6'>Typographic Scale</a></span>
+<br />   <span class='subsectionToc'>2.3 <a href='#line-height' id='QQ2-1-9'>Line height</a></span>
+<br />   <span class='subsectionToc'>2.4 <a href='#media-queries' id='QQ2-1-11'>Media Queries</a></span>
+<br />   <span class='sectionToc'>3 <a href='#package-options' id='QQ2-1-14'>Package Options</a></span>
+<br />   <span class='sectionToc'>4 <a href='#commands' id='QQ2-1-15'>Commands</a></span>
+<br />   <span class='sectionToc'>5 <a href='#troubleshooting' id='QQ2-1-16'>Troubleshooting</a></span>
+<br />   <span class='subsectionToc'>5.1 <a href='#underfull-vbox-warning' id='QQ2-1-17'>Underfull <span class='ec-lmtt-10x-x-108'>\vbox </span>warning</a></span>
+<br />   <span class='sectionToc'>6 <a href='#license' id='QQ2-1-18'>License</a></span>
+<br />   <span class='sectionToc'>7 <a href='#changes' id='QQ2-1-19'>Changes</a></span>
+</div>
+<!-- l. 91 --><p class='noindent'>
+</p>   
+<h3 class='sectionHead' id='introduction'><span class='titlemark'>1   </span> <a id='x1-20001'></a>Introduction</h3>
+<!-- l. 93 --><p class='noindent'>This package aims to facilitate the creation of documents for multiple
+output formats, such as various page sizes, e-book readers, or even mobile
+phones.
+</p><!-- l. 96 --><p class='indent'>   One of the issues that needs to be addressed is setting the correct font size for
+readability. The default font size in LaTeX is 10 points, regardless of the page
+size. This is an appropriate font size for A5 format pages. For A4 format, the
+font size should be larger, while it may be smaller for smaller displays of
+e-readers and mobile phones. Similarly, we can adjust the line spacing,
+which also affects text readability depending on the font size and page
+size.
+</p><!-- l. 103 --><p class='indent'>   Web browsers face a similar problem as they must display text on both large
+PC monitors and smaller displays of laptops, tablets, and mobile phones. The
+solution they use is called <i>responsive design</i>.
+</p><!-- l. 107 --><p class='indent'>   Responsive design is a method of web design that allows flexible and dynamic
+adaptation of the appearance and layout of page content to different display
+devices. One of the key elements of responsive design is a flexible structure
+that enables adjusting the size of elements on the page to the display
+device.
+</p><!-- l. 112 --><p class='indent'>   Another important element is media queries. These allow defining rules based
+on the properties of the display device, such as screen width and height or output
+                                                                    
+
+                                                                    
+type (paper, display). Thanks to these rules, the same page code can
+be well-displayed on both large monitors and mobile devices or when
+printing.
+</p><!-- l. 117 --><p class='indent'>   The Responsive package is inspired by these principles. Its main function is to
+set the font size based on the page size and the approximate number of
+characters that should fit on the page (see figure 1). It also adjusts the
+typographic scale (influencing font size, for example, in headings or footnotes),
+line height, and supports a simple version of media queries.
+</p><!-- l. 124 --><p class='noindent'>
+</p>   
+<h3 class='sectionHead' id='features'><span class='titlemark'>2   </span> <a id='x1-30002'></a>Features</h3>
+<!-- l. 127 --><p class='noindent'>
+</p>   
+<h4 class='subsectionHead' id='fitting-font-size-to-the-page-size'><span class='titlemark'>2.1   </span> <a id='x1-40002.1'></a>Fitting Font Size to the Page Size</h4>
+<!-- l. 129 --><p class='noindent'>Regardless of the width of the page, there is a certain range of the number of
+characters that should be displayed on average per line of text to ensure good
+readability. With a larger number of characters, the reader may have difficulty
+quickly moving to the next line, while shorter lines may lead to skipping
+lines.
+</p><!-- l. 135 --><p class='indent'>   The Responsive package automatically sets the width of the text to a chosen
+number of characters. Figure 1 shows a difference in the font size in two different
+text widths.
+</p>   
+<figure class='figure' id='-example-of-changing-font-size-based-on-the-width-of-the-text-block'> 
+
+                                                                    
+
+                                                                    
+                                                                    
+
+                                                                    
+<a id='x1-4001r1'></a>
+<figcaption class='caption'><span class='id'>Figure 1: </span><span class='content'>Example of changing font size based on the width of the text
+block:
+</span></figcaption><!-- tex4ht:label?: x1-4001r1  -->
+<div class='subfigure'>
+<!-- l. 142 --><p class='noindent'></p>
+<div class='fbox'><img alt=' Loremipsum dolorsitamet,consectetueradipisc-
+inadgipelitisc.ing Uvtpitaure,usfeleis.lit,C vuraestbiibtuulurdmictuumt,g plaracevidraatamac,u-
+risvuPe.lplle Nautantmteesqara,uecumhlibagabernaitao,.ntno Domnuneorbmmcviyehtriegicustietlaqu,cauesonguenseceectteteuusueneeriqutnd,e.e-
+tuleovese.stit Crbumaaslumlesviuaveurndarraafamfrimetngesusillaacrhutuonltrrpcuiceissss.egem Pest.haas Nusel.llalus Maeteuurletisctellutusus
+sitiaaculmeistintor,ptorergtiuramvidquais,pl vaceiverarrt.aa Inc,te ngerunsc.ap Pienraeesest,nt
+egMacetorb,nseiulmdola.velor Cllenuroullabulta,ituricmaraesleucbisuatobedarsndeemumu,pe.purn Aelvulneinala.anr Dfaat,onucmecibuolvas.lisr-
+iueleorsoifecircinddigeg,nietsagssiriittmsusisrut.Dquruuis,m.isdnibiamh.mi D,cuisonegugeeetou,rciacscumitsamanet    ' src='index0x.png' /></div>
+<a id='x1-4002r1'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(a) </span></span><span class='content'><span class='ec-lmr-9x-x-101'>Text width 4 cm</span>               </span></div></div> <div class='subfigure'>
+<!-- l. 155 --><p class='noindent'></p>
+<div class='fbox'><img alt='inLgo erelimt. ipUsutm pudruolsor elisit,t v ameesttib,u colunmsecutte,tu pelarc aderiatpiscac-,
+adriis.piscNainmgvaritcaue, lifbeelris.o, nCuornuabmimtuyrdegicettu,m cgonrseavcidteatumearu id-,
+vPulelpuletntateesq au,e m haabgnitaa.nt D moonercbi vehtriiscutiqlaueau sgenueecteuusne etquene.-
+tuleso e.t C mraasle vsuivaerdara fammeteuss ac rhotunrpcuiss se egme.st Nasu.l Mlaa eutr leisc ututs
+vestibulum urna fringilla ultrices. Phasellus eu tellus
+sicutlamiseint,tporretotirugmraqvuidisa,vpivlaecerrraata.c, Innteugncer.sapienest,ia-   ' src='index1x.png' /></div>
+<a id='x1-4003r2'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(b) </span></span><span class='content'><span class='ec-lmr-9x-x-101'>Text width 6 cm</span>               </span></div></div>
+                                                                    
+
+                                                                    
+</figure>   
+<h4 class='subsectionHead' id='typographic-scale'><span class='titlemark'>2.2   </span> <a id='x1-50002.2'></a>Typographic Scale</h4>
+<!-- l. 180 --><p class='noindent'>The typographic scale is a set of predetermined font sizes used to establish a
+consistent visual style for a document or website. These sizes are typically
+expressed in point units and progressively increase or decrease by a specific
+interval along the scale.
+</p><!-- l. 185 --><p class='indent'>   A typographic scale may include sizes for headings, footnotes, and body text.
+Proper use of a typographic scale helps create a visual hierarchy that enhances
+the readability and aesthetic appeal of the text.
+</p><!-- l. 189 --><p class='indent'>   In LaTeX, the typographic scale is accessible through commands such as
+<span class='obeylines-h'><code class='verb'>\large</code></span>, <span class='obeylines-h'><code class='verb'>\huge</code></span>, or <span class='obeylines-h'><code class='verb'>\scriptsize</code></span>. Each of these commands is one interval away
+from the previous size.
+</p><!-- l. 193 --><p class='indent'>   I drew inspiration from Spencer Mortensen’s article (<span class='ec-lmbx-10x-x-108'>mortensen</span>), which
+defines several different typographic scales and provides a method for
+easily creating additional scales. The default scale in the Responsive
+package, which closely aligns with the scale used in LaTeX, is referred to as
+<span class='obeylines-h'><code class='verb'>tetratonic</code></span>. The package also offers additional scales described in the
+article, such as the golden scale based on the golden ratio. See Figure 2
+for differences between the default scale and scale based on the golden
+ratio.
+</p><!-- l. 203 --><p class='indent'>   The Responsive package includes several predefined typographic scales, but
+you can also define your own. All scales are defined using the options <span class='obeylines-h'><code class='verb'>number</code></span>
+and <span class='obeylines-h'><code class='verb'>ratio</code></span>, specifying how many steps (<span class='obeylines-h'><code class='verb'>number</code></span>) the font size increases
+by the size of <span class='obeylines-h'><code class='verb'>ratio</code></span>. For example scale with <span class='obeylines-h'><code class='verb'>number</code></span> of 2 and <span class='obeylines-h'><code class='verb'>ratio</code></span>
+of 5, will double the font size over 5 steps. Table 1 lists all predefined
+scales.
+</p>   
+<div class='table'>
+                                                                    
+
+                                                                    
+<!-- l. 210 --><p class='indent'>   </p><figure class='float' id='-predefined-typographic-scales'>
+                                                                    
+
+                                                                    
+<div class='tabular'>
+ <table class='tabular' id='TBL-2'><colgroup id='TBL-2-1g'><col id='TBL-2-1' /><col id='TBL-2-2' /><col id='TBL-2-3' /></colgroup><tr id='TBL-2-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-1-1' style='white-space:nowrap; text-align:left;'> name       </td>
+              <td class='td11' id='TBL-2-1-2' style='white-space:nowrap; text-align:left;'> number  </td>
+                         <td class='td11' id='TBL-2-1-3' style='white-space:nowrap; text-align:left;'> ratio  </td>
+</tr><tr id='TBL-2-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-2-1' style='white-space:nowrap; text-align:left;'> heptatonic  </td>
+              <td class='td11' id='TBL-2-2-2' style='white-space:nowrap; text-align:left;'> 7          </td>
+                         <td class='td11' id='TBL-2-2-3' style='white-space:nowrap; text-align:left;'> 2       </td>
+</tr><tr id='TBL-2-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-3-1' style='white-space:nowrap; text-align:left;'> pentatonic  </td><td class='td11' id='TBL-2-3-2' style='white-space:nowrap; text-align:left;'> 5          </td><td class='td11' id='TBL-2-3-3' style='white-space:nowrap; text-align:left;'> 2       </td>
+</tr><tr id='TBL-2-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-4-1' style='white-space:nowrap; text-align:left;'> tetratonic   </td><td class='td11' id='TBL-2-4-2' style='white-space:nowrap; text-align:left;'> 4          </td><td class='td11' id='TBL-2-4-3' style='white-space:nowrap; text-align:left;'> 2       </td>
+</tr><tr id='TBL-2-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-5-1' style='white-space:nowrap; text-align:left;'> tritonic      </td>
+<td class='td11' id='TBL-2-5-2' style='white-space:nowrap; text-align:left;'> 3          </td>
+<td class='td11' id='TBL-2-5-3' style='white-space:nowrap; text-align:left;'> 2       </td>
+</tr><tr id='TBL-2-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-6-1' style='white-space:nowrap; text-align:left;'> golden       </td>
+<td class='td11' id='TBL-2-6-2' style='white-space:nowrap; text-align:left;'> 2          </td>
+<td class='td11' id='TBL-2-6-3' style='white-space:nowrap; text-align:left;'> 1.618  </td>
+
+</tr></table>                                                      </div>
+<a id='x1-5001r1'></a>
+<figcaption class='caption'><span class='id'>Table 1: </span><span class='content'>Predefined typographic scales
+</span></figcaption><!-- tex4ht:label?: x1-5001r1  -->
+                                                                    
+
+                                                                    
+</figure>   
+</div>
+<figure class='figure' id='-sample-of-typographic-scales-the-default-font-size-is-highlighted-with-lines'> 
+
+                                                                    
+
+                                                                    
+                                                                    
+
+                                                                    
+<a id='x1-5002r2'></a>
+<figcaption class='caption'><span class='id'>Figure 2: </span><span class='content'>Sample of Typographic Scales (the default font size is highlighted
+with lines)
+</span></figcaption><!-- tex4ht:label?: x1-5002r2  -->
+<div class='subfigure'>
+<!-- l. 228 --><p class='noindent'></p>
+<div class='fbox'><img alt='|--------------|
+Sample         |
+Sample         |
+Sample         |Default parame-
+SSaammppllee-------- |
+SSaammpplele-----------
+ters   ' src='index2x.png' /></div>
+<a id='x1-5003r1'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(a) </span></span><span class='content'><span class='ec-lmr-9x-x-101'>Default scale</span>
+</span></div>                              </div> <div class='subfigure'>
+<!-- l. 238 --><p class='noindent'></p>
+<div class='fbox'><img alt='|--------------|
+|              |
+Sample         |
+Sample         |scale=golden
+Sample         |
+SSSaaammmpppllleee-------- |
+Sample------------  ' src='index3x.png' /></div>
+<a id='x1-5004r2'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(b) </span></span><span class='content'><span class='ec-lmr-9x-x-101'>Golden ratio scale</span>
+</span></div>                              </div>
+                                                                    
+
+                                                                    
+</figure>   
+<h4 class='subsectionHead' id='line-height'><span class='titlemark'>2.3   </span> <a id='x1-60002.3'></a>Line height</h4>
+<!-- l. 265 --><p class='noindent'>In the default settings of LaTeX, the line spacing is set to the font size multiplied
+by a factor of 1.2. For different fonts and page sizes, a different line spacing may
+be appropriate. Similarly, distinct values may be suitable for the printed and
+electronic versions of the document.
+</p><!-- l. 270 --><p class='indent'>   The Responsive package provides two options which allows you to change the
+line spacing (Figure 3).
+</p><!-- l. 273 --><p class='indent'>   First is the <span class='obeylines-h'><code class='verb'>lineratio</code></span> option, which bases the line height on the ratio
+between x-height of the current font and the desired height. I’ve found this
+method in article by Edoardo Cavazza in the <i>Smashing Magazine</i> (<span class='ec-lmbx-10x-x-108'>cavazza</span>).
+The value of the <span class='obeylines-h'><code class='verb'>lineratio</code></span> option determines what percentage of the total line
+height is the <span class='obeylines-h'><code class='verb'>x-height</code></span>. The higher this value, the lower the line will be. For
+different fonts, the same ratio may lead to different line heights because each font
+has a different <span class='obeylines-h'><code class='verb'>x-height</code></span> value. The appropriate lineratio size needs to be
+determined experimentally. The default value should roughly correspond to a line
+height of 1.2, the default in LaTeX.
+</p><!-- l. 283 --><p class='indent'>   Another option is <span class='obeylines-h'><code class='verb'>lineheight</code></span>, which is similar to the CSS property
+<span class='obeylines-h'><code class='verb'>line-height</code></span>. Using it, we can choose the line height as a multiple of the font
+size.
+</p>   
+<figure class='figure' id='-changing-the-line-spacing-by-adjusting-the-value-of-lineratio'> 
+
+                                                                    
+
+                                                                    
+                                                                    
+
+                                                                    
+<a id='x1-6001r3'></a>
+<figcaption class='caption'><span class='id'>Figure 3: </span><span class='content'>Changing the line spacing by adjusting the value of <span class='ec-lmtt-10x-x-108'>lineratio</span>.
+</span></figcaption><!-- tex4ht:label?: x1-6001r3  -->
+<div class='subfigure'>
+<!-- l. 292 --><p class='noindent'></p>
+<div class='fbox'><img alt=' Lorem ipsum dolor sit amet, consectetuer adipisc-
+inadrigips. elis Nitciam.ng Uvartitcu puaelr,fibuseler eis.o,lit Cn,uon veraumstbimibtuyulreumdicgetut,utmc,gon praselacvcteridaetatmuearacuid,-,
+vuPlpelluentatetesqaue,mhaagnbiata.nt Dmonoecrbviehtriicstuliqaueausgenueecetuusneetqunee.-
+tuleso.et Cmraaslevsuiveadrraafammetesusarchotunrpcuissesegem.st Nasu.ll Maauetrleisctutus
+vesiiasttcuib amliulesumt in to,purrtornaretif gumrirangviqilldauisa p,ulla vitrceveicrarres.t.a I acPhn,asteg neleunlurc.s saeupiPrtenaeel eselusstnt,
+egMetorsbiem dolveorll neouullalt,ri mcealsbesuibaedand eumu.,p Auelvneinanarf aaut,c miboluslis.
+aciuel,seinuorfenllcida.eg,s Cetaurgitraisutibisstu.Dqurauisuis,dctniaoribmsh.emmi Dp,uercoisnngegulueetlaeo.Du,rcoainccsiecumtavsmaranet-
+orcidignissimrutrum.   ' src='index4x.png' /></div>
+<a id='x1-6002r1'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(a) </span></span><span class='content'><span class='ec-lmr-9x-x-101'>lineratio=38</span>
+</span></div>                              </div> <div class='subfigure'>
+<!-- l. 303 --><p class='noindent'></p>
+<div class='fbox'><img alt='inLgor elemit.ip Usutm pu drolusor e slitit, a vemstet,ib culonumsecutte,tu perlac aerdiatpiscac-,
+adriips.is Nciamngvaritcuael,fibeleris.o, Cnuonraumbimtuyredicgetut,mcgonrasevctidaetmuearuid-,
+vuPlpelluentatetesqaue,mhaagnbiata.nt Dmonoecrbviehtriicstuliqaueausgenueecetuusneetqunee.-
+tuleveso.stet Cibmraulasumlevsuiveuradrrnaaaffamrimetngesusillarachoultuntrrpcuicisses.esegem.Phst Nasasuel.lllu Masaueteurletisctelutuslus
+siiatcu amliest in to,prtorreti gumraviqdauis p,la viceverarrt.a I acn,teg neunrc. sapiPrenae esestnt,
+egMetorsbiem dolveorll neouullalt,ri mcealsbesuibaedand eumu.,p Auelvneinanarf aaut,c miboluslis.
+aciu,snuorllcia.eg Ceturraisubistu.Drauuisctnoribshemmip,erconnguluelae.Du,oanccecumvsaran-
+eloreicifenddig,sniassigitmtirsutquruism,d.iam. Duisegetorcisitamet   ' src='index5x.png' /></div>
+<a id='x1-6003r2'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(b) </span></span><span class='content'><span class='ec-lmr-9x-x-101'>lineratio=34</span>
+</span></div>                              </div>
+                                                                    
+
+                                                                    
+</figure>   
+<h4 class='subsectionHead' id='media-queries'><span class='titlemark'>2.4   </span> <a id='x1-70002.4'></a>Media Queries</h4>
+<!-- l. 320 --><p class='noindent'>Media queries are a technique that allows web developers to dynamically adapt
+the appearance and behavior of websites based on various device properties, such
+as screen width and height, device orientation, color support, and more. Thanks
+to these conditions, responsive and flexible websites can be created that
+automatically adjust to different types and sizes of devices on which they are
+displayed.
+</p><!-- l. 327 --><p class='indent'>   How can this technique be useful for LaTeX package authors? They
+could, for example, set the font size, line spacing, and other elements for
+specific page dimensions. Once the user chooses the page size based on the
+device size for which they want to compile the document, these elements
+are automatically adjusted. For instance, a package author could define
+that if the width of the text block is smaller than a certain dimension,
+fewer characters will be displayed on each line compared to longer lines
+(Figure 4).
+</p><!-- l. 335 --><p class='indent'>   The media query used for this figure looks like this:
+                                                                    
+
+                                                                    
+</p>   
+<pre class='verbatim' id='verbatim-1'>
+\mediaquery{max-textwidth=4cm}
+{\ResponsiveSetup{lineratio=38}\setsizes{45}}
+\ResponsiveSetup{lineratio=34}\setsizes{60}}
+</pre>
+<!-- l. 341 --><p class='nopar'>
+</p><!-- l. 343 --><p class='indent'>   This media query defines that if the width of the text is smaller than or equal
+to 4 cm, a smaller number of characters will be displayed per line to prevent the
+font from being too small and difficult to read. Additionally, a smaller line
+spacing will be applied.
+</p>   
+<figure class='figure' id='-change-number-of-characters-and-line-spacing-depending-on-the-text-width-using-media-queries'> 
+
+                                                                    
+
+                                                                    
+                                                                    
+
+                                                                    
+<a id='x1-7001r4'></a>
+<figcaption class='caption'><span class='id'>Figure 4: </span><span class='content'>Change number of characters and line spacing depending on the
+text width using Media queries
+</span></figcaption><!-- tex4ht:label?: x1-7001r4  -->
+<div class='subfigure'>
+<!-- l. 362 --><p class='noindent'></p>
+<img alt='seLcoteretumerip asudimpisdocilongr selitit a.meUt,t conpu--
+ruadsi epilisct,in vgestviibtauleu,m fe ulit,s. placCeurraatbi atuc,r
+dliicbeturmo, ngroavnuimdamymauegreist,. conNasmecteatrcueur
+idh,ic vululap autugautee a eu, mneaqguena.. PeDlleonnetecsq veu-e
+hnabetitusantet m moarlbies tuaridstaiq fuamee sesn aecct tusur eptis
+egmeesttuass. r Mhoanucuriss s ute lmeo.. CNrulasla vivete lrreca-
+tucess v.e Phstaibseullluumseuurtnelalu frsinsgitilalam uetlttroi-r-
+toesacrt,, g i nraauvcuncidli.as P p inrla,aece pserrenattit.um eg Ientqtegui sees,mr v saivvepelierr lenao
+uMltroicrbeisdobilobrenndulumla., Amealneseaunadfaauecu,ibpuus.l-
+vauincarto art s,memoplelisr a ncu,lla nu.llaD.on Ceurca vbiartuiurs
+oreuc,ie agcceturmissauns. e Dleuifisenndib,h samgiit,ctiosng quuies,
+ddiaigmni.ss Dimuisrutegruemt. orci sit amet orci   ' src='index6x.png' />
+<a id='x1-7002r1'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(a)  </span></span><span class='content'><span class='ec-lmr-9x-x-101'>Text  width  of  4 cm  with  45
+characters</span>
+</span></div>                           </div>                                                                    <div class='subfigure'>
+<!-- l. 373 --><p class='noindent'></p>
+<img alt='elLito.re Umt pipursuums eldoitlo,vresstitibaumluetm, u cotn,pselcacteertuaetr acad,ip aisdicpiinscg-
+inargcvuit liaebe,rfeo,li ns.o Cnuumrambyit eurgdetic,t coumnsegcratevitudearm idau,r vuisl.pu Ntamate
+a,magna. Donecvehiculaaugueeuneque. Pellentesque
+hfaabmiteasnt acmoturbrpiitsris egteiqstueass.en Meactuurisset unte letuo.setCmraasle vsivuaedrraa
+mfreintugsill rhao unltcurisce ss.em.PhNasuellalluset eule tcteluslusve sstitib aumluemt tourrntoar
+gravida placerat. Integersapienest,iaculisin,pretium
+qbuiibs,envdivuermra.a Acen,neuannc.fa Purcibaeuses.ntMegoetrbsie dmolvorel nleuollua,lt mriaceles-
+suseamdapereun,upullalv.i Dnaorneact,vmaroiullissoracc,ienuglletari.Csuusr.ab Dituiusrniaubhcmtoir,
+congueeu,accumsan eleifend,sagittisquis,diam. Duis
+egetorcisitametorcidignissim rutrum.   ' src='index7x.png' />
+<a id='x1-7003r2'></a>
+<div class='caption'><span class='id'><span class='ec-lmr-9x-x-101'>(b) </span></span><span class='content'><span class='ec-lmr-9x-x-101'>Text width of 6 cm with 60 characters</span>
+</span></div>                                     </div>
+                                                                    
+
+                                                                    
+</figure>
+<!-- l. 385 --><p class='indent'>   The tests available in media queries are listed in Table 2. Those expecting
+dimensional units also have variants using <span class='ec-lmtt-10x-x-108'>min- </span>and <span class='ec-lmtt-10x-x-108'>max-</span>, which do not test
+exact values but rather whether the provided value is less than, greater than, or
+equal to the tested parameter. Tests without these variants evaluate for an exact
+match. The test for a two-column layout is special in that it does not expect any
+testing values. It evaluates to true if the document uses the <span class='ec-lmtt-10x-x-108'>twocolumn</span>
+option.
+</p>   
+<div class='table'>
+                                                                    
+
+                                                                    
+<!-- l. 394 --><p class='indent'>   </p><figure class='float' id='-tests-available-in-media-queries'>
+                                                                    
+
+                                                                    
+<div class='tabular'>
+ <table class='tabular' id='TBL-3'><colgroup id='TBL-3-1g'><col id='TBL-3-1' /><col id='TBL-3-2' /></colgroup><tr id='TBL-3-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-1-1' style='white-space:nowrap; text-align:left;'> test           </td>
+               <td class='td11' id='TBL-3-1-2' style='white-space:nowrap; text-align:left;'> possible values       </td>
+</tr><tr id='TBL-3-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-2-1' style='white-space:nowrap; text-align:left;'> textwidth     </td>
+               <td class='td11' id='TBL-3-2-2' style='white-space:nowrap; text-align:left;'> dimensional unit     </td></tr><tr id='TBL-3-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-3-1' style='white-space:nowrap; text-align:left;'> textheight </td>
+               <td class='td11' id='TBL-3-3-2' style='white-space:nowrap; text-align:left;'> dimensional unit     </td>
+</tr><tr id='TBL-3-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-4-1' style='white-space:nowrap; text-align:left;'> paperwidth  </td><td class='td11' id='TBL-3-4-2' style='white-space:nowrap; text-align:left;'> dimensional unit     </td>
+</tr><tr id='TBL-3-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-5-1' style='white-space:nowrap; text-align:left;'> paperheight  </td>
+<td class='td11' id='TBL-3-5-2' style='white-space:nowrap; text-align:left;'> dimensional unit     </td>
+</tr><tr id='TBL-3-6-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-6-1' style='white-space:nowrap; text-align:left;'> orientation   </td>
+<td class='td11' id='TBL-3-6-2' style='white-space:nowrap; text-align:left;'> landscape, portrait  </td>
+</tr><tr id='TBL-3-7-' style='vertical-align:baseline;'><td class='td11' id='TBL-3-7-1' style='white-space:nowrap; text-align:left;'> twocolumn   </td>
+<td class='td11' id='TBL-3-7-2' style='white-space:nowrap; text-align:left;'> none                    </td>
+</tr></table>                                                     </div>
+<a id='x1-7004r2'></a>
+<figcaption class='caption'><span class='id'>Table 2: </span><span class='content'>Tests available in media queries
+</span></figcaption><!-- tex4ht:label?: x1-7004r2  -->
+                                                                    
+
+                                                                    
+</figure>   
+</div>
+<h3 class='sectionHead' id='package-options'><span class='titlemark'>3   </span> <a id='x1-80003'></a>Package Options</h3>
+<!-- l. 416 --><p class='noindent'>The following options can be passed as package options used in <span class='ec-lmtt-10x-x-108'>\usepackage</span>, or
+later in the document using the <span class='ec-lmtt-10x-x-108'>\ResponsiveSetup </span>command.
+</p><!-- l. 421 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>characters</span></span><a id='dx1-8001'></a>Approximate number of characters that should fit to a text line.
+Default value is 66.
+</p><!-- l. 423 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>noautomatic</span></span><a id='dx1-8002'></a>Disable automatic setting of font sizes, line spacing and typographic
+scale in the document. You can set them later using the <span class='ec-lmtt-10x-x-108'>\setsizes </span>and
+<span class='ec-lmtt-10x-x-108'>\ResponsiveSetup </span>commands.
+</p><!-- l. 426 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>scale</span></span><a id='dx1-8003'></a>Select named typographic scale. Default scale is <span class='ec-lmtt-10x-x-108'>tetratonic</span>, which is the
+most similar to the default scale used by LaTeX.
+</p><!-- l. 430 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>number</span></span><a id='dx1-8004'></a>The number of steps during which the text size is multiplied by the
+amount specified in the <span class='ec-lmtt-10x-x-108'>ratio </span>option.
+</p><!-- l. 432 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>ratio</span></span><a id='dx1-8005'></a>The amount by which the font size will increase over a given number of
+steps.
+</p><!-- l. 434 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>lineratio</span></span><a id='dx1-8006'></a>The ratio used in calculating the line spacing. Default value is 33.3333,
+which should produce similar line spacing as the default LaTeX setting.
+</p><!-- l. 436 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>lineheight</span></span><a id='dx1-8007'></a>Calculate line spacing by a fixed ratio, similarly to the CSS
+<span class='ec-lmtt-10x-x-108'>lineheight </span>property.
+</p><!-- l. 438 --><p class='noindent'><span class='reversemarginpar'><span class='ec-lmtt-9x-x-101'>boxwidth</span></span><a id='dx1-8008'></a>Width of line that is used for font size calculations in the <span class='ec-lmtt-10x-x-108'>\setsizes</span>
+command. Default value is <span class='ec-lmtt-10x-x-108'>\textwidth</span>.
+</p><!-- l. 443 --><p class='noindent'>
+</p>   
+<h3 class='sectionHead' id='commands'><span class='titlemark'>4   </span> <a id='x1-90004'></a>Commands</h3>
+<!-- l. 446 --><p class='noindent'><span class='ec-lmtt-10x-x-108'>\ResponsiveSetup{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>options</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}</span>
+</p><!-- l. 448 --><p class='noindent'>It allows you to reset the package options later in the document. You need to call
+the <span class='ec-lmtt-10x-x-108'>\setsizes </span>command to reset font sizes explicitly if you use this
+command outside of the document preamble, or when using the <span class='ec-lmtt-10x-x-108'>noautomatic</span>
+option.
+</p><!-- l. 453 --><p class='indent'>   <span class='ec-lmtt-10x-x-108'>\setsizes[</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>line height ratio</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>]{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>number of characters per line</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}</span>
+</p><!-- l. 455 --><p class='noindent'>It sets the text size so that the specified average number of characters fit on a
+line. If you do not provide the number of characters, the package option
+<span class='ec-lmtt-10x-x-108'>characters </span>will be used.
+</p><!-- l. 461 --><p class='indent'>   <span class='ec-lmtt-10x-x-108'>\fonttobox[</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>line height ratio</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>]{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>text width</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>text</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}</span>
+</p><!-- l. 463 --><p class='noindent'>Set the text size so that the specified text in the second parameter has the
+specified size in the first parameter. Optionally, you can set the line height
+                                                                    
+
+                                                                    
+ratio.
+</p><!-- l. 468 --><p class='indent'>   <span class='ec-lmtt-10x-x-108'>\mediaquery{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>media query test</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>true code</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>false code</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}</span>
+</p><!-- l. 470 --><p class='noindent'>It tests the document’s properties using media queries and executes code based
+on the test results. The code can typically use <span class='ec-lmtt-10x-x-108'>\ResponsiveSetup</span>, but you can
+also execute any other commands.
+</p><!-- l. 475 --><p class='indent'>   <span class='ec-lmtt-10x-x-108'>\DeclareMediaQueryMatcher{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>test name</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}{</span><span class='cmsy-10x-x-109'>⟨</span><span class='ec-lmri-10x-x-108'>LaTeX 3 boolean query
+test</span><span class='cmsy-10x-x-109'>⟩</span><span class='ec-lmtt-10x-x-108'>}</span>
+</p><!-- l. 477 --><p class='noindent'>Declares a new test for a media query. The tests can use LaTeX 3 boolean tests,
+and in case of a positive result, it must execute the command <span class='ec-lmtt-10x-x-108'>\mediaquerytrue</span>.
+</p><!-- l. 482 --><p class='indent'>   <span class='ec-lmtt-10x-x-108'>\fixtextheight</span>
+</p><!-- l. 484 --><p class='noindent'>It adjusts the page height, header, and footer to prevent underflow <span class='ec-lmtt-10x-x-108'>\vbox</span>
+warnings in the output routine.
+</p><!-- l. 489 --><p class='noindent'>
+</p>   
+<h3 class='sectionHead' id='troubleshooting'><span class='titlemark'>5   </span> <a id='x1-100005'></a>Troubleshooting</h3>
+<!-- l. 491 --><p class='noindent'>Occasionally, you can run into issues caused by the change of font sizes.
+LaTeX sets lot of parameters depending on the base font size. We try to
+recalculate them according to the new font size, but you can still experience
+some issues, described in following subsections.
+</p><!-- l. 495 --><p class='noindent'>
+</p>   
+<h4 class='subsectionHead' id='underfull-vbox-warning'><span class='titlemark'>5.1   </span> <a id='x1-110005.1'></a>Underfull <span class='ec-lmtt-10x-x-108'>\vbox </span>warning</h4>
+<!-- l. 497 --><p class='noindent'>Occasionally, you can get the following warning:
+                                                                    
+
+                                                                    
+</p>   
+<pre class='verbatim' id='verbatim-2'>
+Underfull \vbox (badness 6412) has occurred while \output is active []
+</pre>
+<!-- l. 501 --><p class='nopar'>
+</p><!-- l. 503 --><p class='indent'>   We calculate the page height that suits for the font size, but often, we would
+get error when a bigger font is used on the page, for example in chapters. When
+you set font sizes in the document preamble, text height should be changed
+automatically. If you reset font sizes later in the document, you need to use
+the <span class='ec-lmtt-10x-x-108'>\fixtextheight </span>command. It should help in most cases. If not,
+you can try the following hack. This trick should fix <span class='ec-lmtt-10x-x-108'>\vbox </span>errors in
+the output routine, but it can lead to an irregular number of lines on
+pages.
+                                                                    
+
+                                                                    
+</p>   
+<pre class='verbatim' id='verbatim-3'>
+\ExplSyntaxOn
+\def\@textbottom{\vskip \z@ \@plus \resp_font_size \@minus \resp_font_size}
+\ExplSyntaxOff
+</pre>
+<!-- l. 517 --><p class='nopar'>
+</p><!-- l. 519 --><p class='noindent'>
+</p>   
+<h3 class='sectionHead' id='license'><span class='titlemark'>6   </span> <a id='x1-120006'></a>License</h3>
+<!-- l. 521 --><p class='noindent'>Permission is granted to copy, distribute and/or modify this software under the
+terms of the LaTeX Project Public License, version 1.3.
+</p><!-- l. 525 --><p class='noindent'>
+</p>   
+<h3 class='sectionHead' id='changes'><span class='titlemark'>7   </span> <a id='x1-130007'></a>Changes</h3>
+<!-- l. 527 --><p class='noindent'>
+<a id='x1-13001r3'></a></p>   
+<!-- l. 528 --><div class='longtable'> <table class='longtable' id='TBL-4'><colgroup id='TBL-4-1g'><col id='TBL-4-1' /><col id='TBL-4-2' /></colgroup>
+<tr id='TBL-4-1-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-1-1' style='white-space:nowrap; text-align:left;'>2023-12-13</td>
+<td class='td11' id='TBL-4-1-2' style='white-space:normal; text-align:left;'>
+<!-- l. 528 --><p class='noindent'>Version 0.1 released.                                                               </p></td>
+</tr><tr id='TBL-4-2-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-2-1' style='white-space:nowrap; text-align:left;'>         </td>
+<td class='td11' id='TBL-4-2-2' style='white-space:normal; text-align:left;'>
+<!-- l. 529 --><p class='noindent'>Finished documentation.                                                          </p></td>
+</tr><tr id='TBL-4-3-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-3-1' style='white-space:nowrap; text-align:left;'>2023-12-07</td>
+<td class='td11' id='TBL-4-3-2' style='white-space:normal; text-align:left;'>
+<!-- l. 530 --><p class='noindent'>Added the <span class='ec-lmtt-10x-x-108'>lineheight </span>property.                                               </p></td>
+</tr><tr id='TBL-4-4-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-4-1' style='white-space:nowrap; text-align:left;'>         </td>
+<td class='td11' id='TBL-4-4-2' style='white-space:normal; text-align:left;'>
+<!-- l. 531 --><p class='noindent'>Use floating point numbers for the lineratio.                                </p></td>
+</tr><tr id='TBL-4-5-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-5-1' style='white-space:nowrap; text-align:left;'>2023-12-06</td>
+<td class='td11' id='TBL-4-5-2' style='white-space:normal; text-align:left;'>
+<!-- l. 532 --><p class='noindent'>ChangeLog started.                                                                </p></td>
+</tr><tr id='TBL-4-10-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-10-1' style='white-space:nowrap; text-align:left;'>          
+</td><td class='td11' id='TBL-4-10-2' style='white-space:normal; text-align:left;'>
+</td></tr>
+</table></div>   
+ 
+</body> 
+</html>
