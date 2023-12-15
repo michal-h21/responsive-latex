@@ -14,6 +14,7 @@ all_sources = $(html_sources) $(sty_file)
 build_dir = build
 build_dest = $(build_dir)/$(pkg_name)
 build_readme = $(build_dest)/README
+build_sty    = $(build_dest)/$(sty_file)
 readme_ctan = readme-ctan.txt
 
 ifeq ($(strip $(shell git rev-parse --is-inside-work-tree 2>/dev/null)),true)
@@ -22,7 +23,7 @@ ifeq ($(strip $(shell git rev-parse --is-inside-work-tree 2>/dev/null)),true)
 	YEAR:= $(shell date '+%Y')
 endif
 
-REPLACE_VERSION = sed -e "s/{{version}}/${VERSION}/" | sed -e "s/{{year}}/${YEAR}/"
+REPLACE_VERSION = sed -e "s/{{version}}/${VERSION}/" | sed -e "s/{{year}}/${YEAR}/" | sed -s "s/{{date}}/${DATE}/"
 
 All: $(doc_pdf) $(doc_html)
 
@@ -41,6 +42,7 @@ build: $(doc_pdf)
 	cp $(pdf_sources) $(build_dest)
 	cp $(doc_pdf) $(build_dest)
 	cat $(readme_ctan) | $(REPLACE_VERSION) > $(build_readme)
+	cat $(sty_file) | $(REPLACE_VERSION) > $(build_sty)
 	cd $(build_dir) && zip -r $(pkg_name).zip $(pkg_name)
 	
 	
