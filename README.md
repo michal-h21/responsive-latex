@@ -19,3 +19,6 @@ elements for various output formats and devices. Key features include:
 - Line Spacing Control: adjust line spacing determining the x-height percentage
   for enhanced readability.
 
+## Documentation
+
+Documentation for the development version is available [here](https://www.kodymirus.cz/responsive-latex/).
