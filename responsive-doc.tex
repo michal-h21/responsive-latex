@@ -22,7 +22,7 @@
 \usepackage{booktabs}
 \usepackage[style=iso-authoryear]{biblatex}
 \addbibresource{responsive-doc.bib}
-\newenvironment{changelog}{\longtable{@{} l p{30em}}}{\endlongtable}
+\newenvironment{changelog}{\longtable{@{} l p{20em}}}{\endlongtable}
 \newcommand\change[2]{#1 & #2\\}
 \ifdefined\HCode
   % I want to convert parts of the document to images,
@@ -525,6 +525,8 @@ under the terms of the \LaTeX\ Project Public License, version 1.3.
 \section{Changes}
 
 \begin{changelog}
+  \change{2024-03-16}{Set the \texttt{topmargin} dimension}
+  \change{}{Call Geometry's \texttt{\textbackslash Gm@process} command to fix page dimensions, if Geometry is loaded}
   \change{2023-12-13}{Version 0.1 released.}
   \change{}{Finished documentation.}
   \change{2023-12-07}{Added the \texttt{lineheight} property.}

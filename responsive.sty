@@ -168,6 +168,10 @@
   \@setfontsize#1{\resp_multiply_note:nnn\resp_font_size{#2}{1}}{\resp_multiply_note:nnn\resp_line_skip{#2}{\l_resp_lineheight_multiplier}}
 }
 
+% This is a dummy definition. It should restore page dimensions using the Geometry package if it is loaded.
+% The correct definition is added in \AtBeginDocument
+\cs_set:Npn\resp_reset_geometry{}
+
 % recalculate \textheight and \headheight with the changed font size
 % this is necessary to prevent the underfull \vbox messages from the output rutine
 \cs_set:Npn\resp_textheight:n {
@@ -182,6 +186,9 @@
   \setlength\headheight{\resp_font_size}
   \setlength\headsep   {1.5\resp_font_size}
   \setlength\footskip{\fp_to_dim:n{2*\resp_font_size+1}}
+  \setlength\topmargin{\fp_to_dim:n{(\paperheight-\textheight -\headheight-\headsep-\footskip)/2 - 1in}}
+  \resp_reset_geometry
+  % \addtolength\topmargin{\topskip}
 }
 
 % the functionality to fix the textheight should be available as a document command
@@ -355,6 +362,9 @@
 
 % setup font sizes at the begin document, in order to support Geometry etc.
 \AtBeginDocument{
+  \@ifpackageloaded{geometry}{
+    \cs_set:Npn\resp_reset_geometry{\Gm@process}
+  }{}
   % set the default font size, based on numbers of characters we want to show on a line of text
   % \fonttobox[32]\textwidth{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_resp_charlines_int}}%
   \bool_if:NTF\l_resp_no_execute {}{
