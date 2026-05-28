@@ -191,7 +191,64 @@
   % \addtolength\topmargin{\topskip}
 }
 
-\cs_set:Npn\resp_declare_lengths:{}
+% set various lengts declared by LaTeX classes to respect the new font size
+\cs_set:Npn\resp_declare_lengths:{
+  % list dimensions
+  \if@twocolumn
+    \setlength\leftmargini  {2em}
+  \else
+    \setlength\leftmargini  {2.5em}
+  \fi
+  \leftmargin  \leftmargini
+  \setlength\leftmarginii  {2.2em}
+  \setlength\leftmarginiii {1.87em}
+  \setlength\leftmarginiv  {1.7em}
+  \if@twocolumn
+    \setlength\leftmarginv  {.5em}
+    \setlength\leftmarginvi {.5em}
+  \else
+    \setlength\leftmarginv  {1em}
+    \setlength\leftmarginvi {1em}
+  \fi
+  \setlength  \labelsep  {.5em}
+  \setlength  \labelwidth{\leftmargini}
+  \addtolength\labelwidth{-\labelsep}
+  \def\@listi{\leftmargin\leftmargini
+    \topsep 0.35em \@plus2\p@ \@minus2\p@
+    \parsep 0.15em \@plus\p@ \@minus\p@
+  \itemsep \parsep}%
+  \let\@listI\@listi
+  \def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep
+              \topsep    0.4em \@plus2\p@ \@minus\p@
+              \parsep    0.2em \@plus\p@  \@minus\p@
+              \itemsep   \parsep}
+  \def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep
+              \topsep    0.2em \@plus\p@\@minus\p@
+              \parsep    \z@
+              \partopsep \p@ \@plus\z@ \@minus\p@
+              \itemsep   \topsep}
+  % tables
+  \setlength\arraycolsep{0.5em}
+  \setlength\tabcolsep{0.6em}
+  \setlength\tabbingsep{\labelsep}
+  \setlength\fboxsep{0.3em}
+  % floats
+  \setlength\floatsep    {1em \@plus 2\p@ \@minus 2\p@}
+  \setlength\textfloatsep{2em \@plus 2\p@ \@minus 4\p@}
+  \setlength\dblfloatsep    {1em \@plus 2\p@ \@minus 2\p@}
+  \setlength\dbltextfloatsep{2em \@plus 2\p@ \@minus 4\p@}
+  \setlength\intextsep{1em \@plus 2\p@ \@minus 2\p@}
+  % math
+  \abovedisplayskip 0.9em \@plus3\p@ \@minus4\p@
+  \belowdisplayshortskip 0.4em \@plus2\p@ \@minus2\p@
+  \belowdisplayskip \abovedisplayskip
+  % footnotes
+  \setlength\footnotesep{0.665em}
+}
 
 
 % the functionality to fix the textheight should be available as a document command
