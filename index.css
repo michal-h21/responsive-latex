@@ -1,239 +1,43 @@
  
 /* start css.sty */
-.ec-lmr-12x-x-91{font-size:109%;}
-.ec-lmr-17x-x-107{font-size:181%;}
-.ec-lmr-12x-x-109{font-size:130%;}
+.rm-lmr-12x-x-91{font-size:109%;}
+.rm-lmr-17x-x-107{font-size:181%;}
+.rm-lmr-12x-x-109{font-size:130%;}
 .ec-lmtt-12x-x-109{font-size:130%; font-family: monospace,monospace;}
 .ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
 .ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmr-9x-x-103{font-size:92%;}
-.ec-lmbx-9x-x-103{font-size:92%; font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
-.ec-lmbx-9x-x-103{ font-weight: bold;}
+.lmmi-12x-x-109{font-size:130%;}
+.rm-lmr-9x-x-103{font-size:92%;}
+.rm-lmbx-9x-x-103{font-size:92%; font-weight: bold;}
 .ec-lmtt-12x-x-91{font-size:109%; font-family: monospace,monospace;}
 .ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
 .ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmri-12x-x-91{font-size:109%; font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmri-12x-x-91{ font-style:italic;}
-.ec-lmr-5x-x-70{font-size:35%;}
+.rm-lmri-12x-x-91{font-size:109%; font-style:italic;}
+.rm-lmr-5x-x-70{font-size:35%;}
 .cmsy-10x-x-109{font-size:109%;}
-.ec-lmr-5x-x-106{font-size:53%;}
-.ec-lmbx-12x-x-91{font-size:109%; font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmbx-12x-x-91{ font-weight: bold;}
-.ec-lmr-7x-x-93{font-size:65%;}
-.ec-lmr-6x-x-96{font-size:57%;}
-.ec-lmr-12x-x-96{font-size:115%;}
-.ec-lmr-10x-x-97{font-size:97%;}
-.ec-lmr-8x-x-102{font-size:81%;}
-.ec-lmr-7x-x-98{font-size:68%;}
-.ec-lmr-5x-x-97{font-size:48%;}
-.ec-lmr-5x-x-81{font-size:40%;}
-.ec-lmr-17x-x-87{font-size:147%;}
-.ec-lmr-12x-x-99{font-size:118%;}
-.ec-lmr-9x-x-103{font-size:92%;}
-.ec-lmr-7x-x-104{font-size:72%;}
-.ec-lmr-5x-x-90{font-size:45%;}
-.ec-lmr-5x-x-71{font-size:35%;}
+.rm-lmr-5x-x-106{font-size:53%;}
+.rm-lmbx-12x-x-91{font-size:109%; font-weight: bold;}
+.rm-lmr-7x-x-93{font-size:65%;}
+.rm-lmr-6x-x-96{font-size:57%;}
+.rm-lmr-12x-x-96{font-size:115%;}
+.rm-lmr-10x-x-97{font-size:97%;}
+.rm-lmr-8x-x-102{font-size:81%;}
+.rm-lmr-7x-x-98{font-size:68%;}
+.rm-lmr-5x-x-97{font-size:48%;}
+.rm-lmr-5x-x-81{font-size:40%;}
+.rm-lmr-17x-x-87{font-size:147%;}
+.rm-lmr-12x-x-99{font-size:118%;}
+.rm-lmr-9x-x-103{font-size:92%;}
+.rm-lmr-7x-x-104{font-size:72%;}
+.rm-lmr-5x-x-90{font-size:45%;}
+.rm-lmr-5x-x-71{font-size:35%;}
 .ec-lmtt-8x-x-81{font-size:64%; font-family: monospace,monospace;}
 .ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
 .ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmr-5x-x-89{font-size:44%;}
-.ec-lmtt-9x-x-103{font-size:92%; font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmtt-9x-x-103{ font-family: monospace,monospace;}
-.ec-lmr-5x-x-104{font-size:52%;}
-.ec-lmr-6x-x-96{font-size:57%;}
+.rm-lmr-5x-x-89{font-size:44%;}
+.rm-lmtt-9x-x-103{font-size:92%; font-family: monospace,monospace;}
+.rm-lmr-5x-x-104{font-size:52%;}
+.rm-lmr-6x-x-96{font-size:57%;}
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
 p + p{margin-top:1em;}
@@ -263,6 +67,8 @@ li p:first-child{ margin-top:0em; }
 li p:last-child, li div:last-child { margin-bottom:0.5em; }
 li p:first-child{ margin-bottom:0; }
 li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+ul.itemize1,ol.enumerate1{padding-left: 0;}
+ul li.itemize,ol li.enumerate{margin-left: 1rem;}
 .enumerate1 {list-style-type:decimal;}
 .enumerate2 {list-style-type:lower-alpha;}
 .enumerate3 {list-style-type:lower-roman;}
@@ -294,6 +100,7 @@ div.flushleft {text-align: left;}
 .framebox-r {text-align:right;}
 span.thank-mark{ vertical-align: super }
 span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+aside.footnote-text p{margin-top:0; margin-bottom:0;text-indent: 0;}
 code.verb{font-family:monospace,monospace;}
 div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
 table.tabular td p{margin-top:0em;}
@@ -339,7 +146,9 @@ table.pmatrix {width:100%;}
 span.bar-css {text-decoration:overline;}
 img.cdots{vertical-align:middle;}
 .partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
-.index-item, .index-subitem, .index-subsubitem {display:block}
+.theindex-letter{ margin-top: 1em;}
+.index-subitem{ margin-left: 2ch;}
+.index-subsubitem{ margin-left: 4ch;}
 div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center; margin-top: 0.5rem;}
 div.caption span.id{font-weight: bold; white-space: nowrap; }
 h1.partHead{text-align: center}
@@ -350,7 +159,7 @@ p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-botto
 .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
 .verse{white-space:nowrap; margin-left:2em}
 div.maketitle {text-align:center;}
-h2.titleHead{text-align:center;}
+h1.titleHead{text-align:center;}
 div.maketitle{ margin-bottom: 2em; }
 div.author, div.date {text-align:center;}
 div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
@@ -367,6 +176,8 @@ figure.figure {text-align:center;}
 figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
 figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
 p + figcaption, img + figcaption{margin-top: 1em;}
+.thebibliography dl { display: grid; grid-auto-columns: min-content 1fr; grid-auto-flow: column; }
+.thebibliography dt { grid-column: 1; margin-bottom: 0.5em; }
 .abstract{margin:1em;}
 div.subfigure {text-align:center;display:inline-block; max-width:45%; margin-right: 2rem;}
 .rotatebox{display: inline-block;}
@@ -375,6 +186,7 @@ table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
 table.longtable{border-collapse: collapse; border-spacing: 0;}
 div.longtable{text-align:center;}
 table.longtable{margin-left:auto; margin-right: auto;}
+table.longtable p{margin-top: 0; margin-bottom: 0;}
 caption.longtable .id{font-weight:bold;}
 dt.printshorthands{float:left; clear:left; margin-right:1em;}
 dd.thebibliography { text-indent: -2em; margin-left: 2em;}
