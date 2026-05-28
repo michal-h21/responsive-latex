@@ -248,6 +248,11 @@
   \belowdisplayskip \abovedisplayskip
   % footnotes
   \setlength\footnotesep{0.665em}
+  % I don't like this redefinition. It is just a literal copy from LaTeX sources, becase without this change a wrong size of \parindent is used
+  \renewcommand\@makefntext[1]{%
+    \parindent 1em%
+    \noindent
+    \hb@xt@1.8em{\hss\@makefnmark}##1}
 }
 
 
