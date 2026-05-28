@@ -170,11 +170,11 @@
 
 % This is a dummy definition. It should restore page dimensions using the Geometry package if it is loaded.
 % The correct definition is added in \AtBeginDocument
-\cs_set:Npn\resp_reset_geometry{}
+\cs_set:Npn\resp_reset_geometry:{}
 
 % recalculate \textheight and \headheight with the changed font size
 % this is necessary to prevent the underfull \vbox messages from the output rutine
-\cs_set:Npn\resp_textheight:n {
+\cs_set:Npn\resp_textheight: {
   % divide original textheight by the current baseline size - this gives us the number of lines that will fit
   % then multipy it by the baseline again, to get the new \textheight
   \setlength\textheight{\fp_to_dim:n{floor(\textheight/\resp_line_skip) * \resp_line_skip }}
@@ -187,16 +187,19 @@
   \setlength\headsep   {1.5\resp_font_size}
   \setlength\footskip{\fp_to_dim:n{2*\resp_font_size+1}}
   \setlength\topmargin{\fp_to_dim:n{(\paperheight-\textheight -\headheight-\headsep-\footskip)/2 - 1in}}
-  \resp_reset_geometry
+  \resp_reset_geometry:
   % \addtolength\topmargin{\topskip}
 }
 
+\cs_set:Npn\resp_declare_lengths:{}
+
+
 % the functionality to fix the textheight should be available as a document command
 \NewDocumentCommand\fixtextheight{}{%
-  \resp_textheight:n%
+  \resp_textheight:%
 }
 
-\cs_set:Npn\resp_declare_font_sizes{%
+\cs_set:Npn\resp_declare_font_sizes:{%
   \DeclareRobustCommand\normalsize{\resp_set_font_size:Nn\normalsize{0}\resp_skips:n{1}}%
   \DeclareRobustCommand\tiny{\resp_set_font_size:Nn\tiny{-3}}
   \DeclareRobustCommand\scriptsize{\resp_set_font_size:Nn\scriptsize{-2}}
@@ -226,13 +229,14 @@
     \fp_set:Nn\l_resp_lineheight_ratio{\fp_eval:n{(\dim_to_fp:n{1ex} / (\f@size * \l_resp_lineheight))*100}}
   }
   \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_tmpa_int}}%
-  \resp_declare_font_sizes%
+  \resp_declare_font_sizes:%
   \normalsize%
   \if@twocolumn
     \parindent=\resp_font_size
   \else
     \parindent=\fp_to_dim:n{\resp_font_size * 1.5}
   \fi
+  \resp_declare_lengths:
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,7 +338,7 @@
 
 
 % find if handler exists for the passed media query type and execute it
-\cs_set:Npn \l_responsive_handle_media_query#1#2{
+\cs_set:Npn \l_responsive_handle_media_query:nn#1#2{
   \cs_if_exist_use:cTF{responsive_query_test:#1}{{#2}}{\PackageWarning{responsive}{Unknown~media~query~test:~#1=#2}}
 }
 
@@ -349,7 +353,7 @@
     % initialize boolean condition for media queries
     \bool_set_false:N\l_responsive_media_query_matched
     % the media query handler must use \mediaquerytrue if the query matches
-    \l_responsive_handle_media_query{##1}{##2}
+    \l_responsive_handle_media_query:nn{##1}{##2}
     % escape the loop immediately if the query doesn't run \mediaquerytrue
     \bool_if:NF\l_responsive_media_query_matched{\prop_map_break:}
   }
@@ -363,7 +367,7 @@
 % setup font sizes at the begin document, in order to support Geometry etc.
 \AtBeginDocument{
   \@ifpackageloaded{geometry}{
-    \cs_set:Npn\resp_reset_geometry{\Gm@process}
+    \cs_set:Npn\resp_reset_geometry:{\Gm@process}
   }{}
   % set the default font size, based on numbers of characters we want to show on a line of text
   % \fonttobox[32]\textwidth{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_resp_charlines_int}}%
