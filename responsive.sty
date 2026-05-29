@@ -44,7 +44,20 @@
 \tl_new:N\l_resp_boxwidth
 \tl_set:Nn \l_resp_boxwidth \textwidth
 
+% this is the string used to measure the line length, it should be long enough
+% to cover all the characters we want to fit on a line, and it should be
+% representative for the text, meaning that it should have similar distribution
+% of characters as the actual text
+\str_new:N\l_resp_alphabet_tl
+\str_set:Nn\l_resp_alphabet_tl{eeeeeeeeeeeeaaaaaaaaiiiiiiiiooooooonnnnnrrrrttttllllssssuuu}
+% I've tested several variants of the string, but these values didn't work that well, the actual 
+% number of characters on a line was much higher than what user requested:
+% \str_set:Nn\l_resp_alphabet_tl{abcdefghijklmnopqrstuvwxyz}
+% \str_set:Nn\l_resp_alphabet_tl{The quick brown fox jumps over the lazy dog.}
+% \str_set:Nn\l_resp_alphabet_tl{000000000000000000000000000}
+
 \keys_define:nn {responsive} {
+  alphabet .str_set:N = \l_resp_alphabet_tl,
   characters .int_set:N = \l_resp_charlines_int,
   noautomatic .bool_set:N = \l_resp_no_execute,
   number .fp_set:N = \l_resp_scalen_fp,
@@ -60,11 +73,9 @@
 \ProcessKeysOptions{responsive}
 
 % the \l_resp_charlist_tl is used to construct string used for line length measurement
-\str_new:N\l_resp_alphabet_tl
 \str_new:N\l_resp_charlist_tl
 % construct really long string that will enable to measure wide number of characters 
 % on a text line
-\str_set:Nn\l_resp_alphabet_tl{abcdefghijklmnopqrstuvwxyz}
 \str_set:Nx\l_resp_charlist_tl{
   \l_resp_alphabet_tl\l_resp_alphabet_tl\l_resp_alphabet_tl
   \l_resp_alphabet_tl\l_resp_alphabet_tl\l_resp_alphabet_tl
@@ -291,6 +302,7 @@
     % lineheight should be ratio, for example 1.2, which is used by default in LaTeX
     \fp_set:Nn\l_resp_lineheight_ratio{\fp_eval:n{(\dim_to_fp:n{1ex} / (\f@size * \l_resp_lineheight))*100}}
   }
+  % calculate font size based on the desired number of characters on a line and the line spacing ratio
   \fonttobox[#1]{\l_resp_boxwidth}{\tl_range:Nnn\l_resp_charlist_tl{1}{\l_tmpa_int}}%
   \resp_declare_font_sizes:%
   \normalsize%
