@@ -1,43 +1,43 @@
  
 /* start css.sty */
-.rm-lmr-12x-x-91{font-size:109%;}
-.rm-lmr-17x-x-107{font-size:181%;}
-.rm-lmr-12x-x-109{font-size:130%;}
-.ec-lmtt-12x-x-109{font-size:130%; font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-109{ font-family: monospace,monospace;}
-.lmmi-12x-x-109{font-size:130%;}
-.rm-lmr-9x-x-103{font-size:92%;}
-.rm-lmbx-9x-x-103{font-size:92%; font-weight: bold;}
-.ec-lmtt-12x-x-91{font-size:109%; font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.ec-lmtt-12x-x-91{ font-family: monospace,monospace;}
-.rm-lmri-12x-x-91{font-size:109%; font-style:italic;}
-.rm-lmr-5x-x-70{font-size:35%;}
-.cmsy-10x-x-109{font-size:109%;}
-.rm-lmr-5x-x-106{font-size:53%;}
-.rm-lmbx-12x-x-91{font-size:109%; font-weight: bold;}
-.rm-lmr-7x-x-93{font-size:65%;}
-.rm-lmr-6x-x-96{font-size:57%;}
-.rm-lmr-12x-x-96{font-size:115%;}
-.rm-lmr-10x-x-97{font-size:97%;}
-.rm-lmr-8x-x-102{font-size:81%;}
-.rm-lmr-7x-x-98{font-size:68%;}
-.rm-lmr-5x-x-97{font-size:48%;}
-.rm-lmr-5x-x-81{font-size:40%;}
-.rm-lmr-17x-x-87{font-size:147%;}
-.rm-lmr-12x-x-99{font-size:118%;}
-.rm-lmr-9x-x-103{font-size:92%;}
-.rm-lmr-7x-x-104{font-size:72%;}
-.rm-lmr-5x-x-90{font-size:45%;}
-.rm-lmr-5x-x-71{font-size:35%;}
-.ec-lmtt-8x-x-81{font-size:64%; font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.ec-lmtt-8x-x-81{ font-family: monospace,monospace;}
-.rm-lmr-5x-x-89{font-size:44%;}
-.rm-lmtt-9x-x-103{font-size:92%; font-family: monospace,monospace;}
+.rm-lmr-12x-x-103{font-size:123%;}
+.rm-lmr-17x-x-120{font-size:204%;}
+.rm-lmr-12x-x-123{font-size:147%;}
+.ec-lmtt-12x-x-123{font-size:147%; font-family: monospace,monospace;}
+.ec-lmtt-12x-x-123{ font-family: monospace,monospace;}
+.ec-lmtt-12x-x-123{ font-family: monospace,monospace;}
+.lmmi-12x-x-123{font-size:147%;}
+.rm-lmr-10x-x-104{font-size:104%;}
+.rm-lmbx-10x-x-104{font-size:104%; font-weight: bold;}
+.ec-lmtt-12x-x-103{font-size:123%; font-family: monospace,monospace;}
+.ec-lmtt-12x-x-103{ font-family: monospace,monospace;}
+.ec-lmtt-12x-x-103{ font-family: monospace,monospace;}
+.rm-lmri-12x-x-103{font-size:123%; font-style:italic;}
+.rm-lmr-5x-x-79{font-size:39%;}
+.cmsy-10x-x-120{font-size:120%;}
+.rm-lmr-6x-x-99{font-size:59%;}
+.rm-lmbx-12x-x-103{font-size:123%; font-weight: bold;}
+.rm-lmr-7x-x-101{font-size:70%;}
+.rm-lmr-7x-x-94{font-size:65%;}
+.rm-lmr-12x-x-110{font-size:132%;}
+.rm-lmr-12x-x-92{font-size:110%;}
+.rm-lmr-9x-x-104{font-size:93%;}
+.rm-lmr-8x-x-98{font-size:78%;}
+.rm-lmr-6x-x-92{font-size:55%;}
+.rm-lmr-5x-x-93{font-size:46%;}
+.rm-lmr-17{font-size:170%;}
+.rm-lmr-12x-x-113{font-size:135%;}
+.rm-lmr-10x-x-107{font-size:107%;}
+.rm-lmr-8x-x-105{font-size:84%;}
 .rm-lmr-5x-x-104{font-size:52%;}
-.rm-lmr-6x-x-96{font-size:57%;}
+.rm-lmr-5x-x-82{font-size:41%;}
+.ec-lmtt-8x-x-89{font-size:71%; font-family: monospace,monospace;}
+.ec-lmtt-8x-x-89{ font-family: monospace,monospace;}
+.ec-lmtt-8x-x-89{ font-family: monospace,monospace;}
+.rm-lmr-5x-x-101{font-size:50%;}
+.rm-lmtt-10x-x-104{font-size:104%; font-family: monospace,monospace;}
+.rm-lmr-6x-x-95{font-size:57%;}
+.rm-lmr-7x-x-94{font-size:65%;}
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
 p + p{margin-top:1em;}
